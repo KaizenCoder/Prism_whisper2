@@ -1,0 +1,242 @@
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.poetry]
+name = "superwhisper2"
+version = "0.1.0"
+description = "SuperWhisper Windows Native - Transcription vocale instantanée avec RTX 3090"
+authors = ["SuperWhisper2 Team"]
+license = "MIT"
+readme = "README.md"
+homepage = "https://github.com/user/SuperWhisper2"
+repository = "https://github.com/user/SuperWhisper2"
+documentation = "https://superwhisper2.readthedocs.io"
+keywords = ["speech-to-text", "whisper", "rtx", "windows", "talon", "transcription"]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: End Users/Desktop",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: Microsoft :: Windows",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Multimedia :: Sound/Audio :: Speech",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+]
+
+[tool.poetry.dependencies]
+python = "^3.11"
+
+# Core AI dependencies
+faster-whisper = "^0.10.0"
+torch = {version = "^2.0.0", source = "pytorch"}
+torchaudio = {version = "^2.0.0", source = "pytorch"}
+
+# Audio processing
+sounddevice = "^0.4.6"
+numpy = "^1.24.0"
+librosa = "^0.10.0"
+webrtcvad = "^2.0.10"
+
+# System integration
+pystray = "^0.19.4"
+pynput = "^1.7.6"
+psutil = "^5.9.5"
+
+# Async and utilities
+asyncio-mqtt = "^0.16.1"
+aiofiles = "^23.2.1"
+rich = "^13.7.0"
+click = "^8.1.7"
+
+# Configuration and data
+pydantic = "^2.5.0"
+pyyaml = "^6.0.1"
+toml = "^0.10.2"
+
+# Development and testing (optional)
+pytest = {version = "^7.4.3", optional = true}
+pytest-asyncio = {version = "^0.21.1", optional = true}
+pytest-cov = {version = "^4.1.0", optional = true}
+black = {version = "^23.11.0", optional = true}
+flake8 = {version = "^6.1.0", optional = true}
+mypy = {version = "^1.7.1", optional = true}
+
+[[tool.poetry.source]]
+name = "pytorch"
+url = "https://download.pytorch.org/whl/cu118"
+priority = "explicit"
+
+[tool.poetry.extras]
+dev = ["pytest", "pytest-asyncio", "pytest-cov", "black", "flake8", "mypy"]
+test = ["pytest", "pytest-asyncio", "pytest-cov"]
+
+[tool.poetry.scripts]
+superwhisper2 = "superwhisper2.main:main"
+sw2 = "superwhisper2.main:main"
+superwhisper2-config = "superwhisper2.ui.config_dialog:main"
+superwhisper2-benchmark = "superwhisper2.scripts.benchmark:main"
+
+[tool.poetry.group.dev.dependencies]
+pytest = "^7.4.3"
+pytest-asyncio = "^0.21.1"
+pytest-cov = "^4.1.0"
+black = "^23.11.0"
+flake8 "^6.1.0"
+mypy = "^1.7.1"
+isort = "^5.12.0"
+pre-commit = "^3.5.0"
+
+# === Development Tools Configuration ===
+
+[tool.black]
+line-length = 88
+target-version = ['py311']
+include = '\.pyi?$'
+extend-exclude = '''
+/(
+  # directories
+  \.eggs
+  | \.git
+  | \.hg
+  | \.mypy_cache
+  | \.tox
+  | \.venv
+  | build
+  | dist
+)/
+'''
+
+[tool.isort]
+profile = "black"
+multi_line_output = 3
+line_length = 88
+known_first_party = ["superwhisper2"]
+
+[tool.mypy]
+python_version = "3.11"
+warn_return_any = true
+warn_unused_configs = true
+disallow_untyped_defs = true
+disallow_incomplete_defs = true
+check_untyped_defs = true
+disallow_untyped_decorators = true
+no_implicit_optional = true
+warn_redundant_casts = true
+warn_unused_ignores = true
+warn_no_return = true
+warn_unreachable = true
+strict_equality = true
+
+[[tool.mypy.overrides]]
+module = [
+    "faster_whisper.*",
+    "sounddevice.*",
+    "librosa.*",
+    "webrtcvad.*",
+    "pystray.*",
+]
+ignore_missing_imports = true
+
+[tool.pytest.ini_options]
+minversion = "7.0"
+addopts = [
+    "-ra",
+    "--strict-markers",
+    "--strict-config",
+    "--cov=superwhisper2",
+    "--cov-report=term-missing",
+    "--cov-report=html",
+    "--cov-branch",
+]
+testpaths = ["tests"]
+python_files = ["test_*.py"]
+python_classes = ["Test*"]
+python_functions = ["test_*"]
+asyncio_mode = "auto"
+
+markers = [
+    "unit: Unit tests",
+    "integration: Integration tests", 
+    "performance: Performance benchmarks",
+    "gpu: Tests requiring GPU",
+    "talon: Tests requiring Talon",
+    "slow: Slow tests (>5s)",
+]
+
+[tool.coverage.run]
+source = ["superwhisper2"]
+omit = [
+    "*/tests/*",
+    "*/test_*",
+    "setup.py",
+]
+
+[tool.coverage.report]
+exclude_lines = [
+    "pragma: no cover",
+    "def __repr__",
+    "if self.debug:",
+    "if settings.DEBUG",
+    "raise AssertionError",
+    "raise NotImplementedError",
+    "if 0:",
+    "if __name__ == .__main__.:",
+    "class .*\bProtocol\):",
+    "@(abc\.)?abstractmethod",
+]
+
+# === Project Configuration ===
+
+[tool.superwhisper2]
+# Default configuration embedded in pyproject.toml
+
+[tool.superwhisper2.whisper]
+model_size = "medium"
+device = "cuda"
+compute_type = "float16"
+language = "fr"
+beam_size = 5
+temperature = 0.0
+
+[tool.superwhisper2.audio]
+sample_rate = 16000
+channels = 1
+max_duration = 30.0
+buffer_size = 1024
+
+[tool.superwhisper2.vad]
+aggressiveness = 2
+silence_threshold = 0.5
+min_speech_duration = 0.3
+
+[tool.superwhisper2.talon]
+hotkey_transcribe = "win-shift-v"
+hotkey_stop = "win-shift-s"
+hotkey_config = "win-shift-c"
+
+[tool.superwhisper2.performance]
+max_latency_ms = 500
+max_vram_gb = 6.0
+preload_model = true
+gpu_monitoring = true
+
+[tool.superwhisper2.ui]
+system_tray = true
+overlay = true
+notifications = true
+theme = "auto"
+
+[tool.superwhisper2.logging]
+level = "INFO"
+file = "superwhisper2.log"
+console = true
+max_size_mb = 10
+backup_count = 3
+
+[tool.superwhisper2.paths]
+models_dir = "D:/modeles_ia"
+cache_dir = "D:/modeles_ia/huggingface/hub"
+config_dir = "%APPDATA%/SuperWhisper2"
+logs_dir = "%APPDATA%/SuperWhisper2/logs" 
