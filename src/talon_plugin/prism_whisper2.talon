@@ -2,10 +2,10 @@ os: windows
 -
 
 # Prism_whisper2 - Talon Voice Integration
-# Hotkey: Win+Shift+V pour transcription vocale
+# Hotkey: Win+Alt+V pour transcription vocale
 
 # Global hotkey pour démarrer transcription
-key(win-shift-v): user.prism_transcribe()
+key(win-alt-v): user.prism_transcribe()
 
 # Actions utilisateur
 user.prism_transcribe():

@@ -174,6 +174,100 @@ Avant tout développement, vérifier :
 
 ---
 
+---
+
+## 📋 Contraintes Documentation & Succession
+
+### 1. Convention Briefings Successeur
+
+**🎯 Format Obligatoire :**
+```
+YYYYMMDD_HHMM_PHASE[X]_TO_PHASE[Y]_SUCCESSEUR_BRIEFING.md
+```
+
+**📅 Exemples :**
+- `20250607_1900_PHASE0_TO_PHASE1_SUCCESSEUR_BRIEFING.md` ✅
+- `20250609_1800_PHASE1_TO_PHASE2_SUCCESSEUR_BRIEFING.md` 
+- `BRIEFING_SUCCESSOR.md` ❌ (format non-conforme)
+
+**🔒 Règles Strictes :**
+- **Timestamp obligatoire** : YYYYMMDD_HHMM format
+- **Phase identification** : PHASE[current]_TO_PHASE[next]
+- **Mot-clé fixe** : SUCCESSEUR_BRIEFING
+- **Extension** : .md uniquement
+
+### 2. Création Automatique
+
+**📋 Checklist avant fin de phase :**
+- [ ] Critères Go/No-Go validés pour phase actuelle
+- [ ] Briefing successeur créé avec bon timestamp
+- [ ] Architecture actuelle documentée
+- [ ] Problèmes connus + solutions documentés
+- [ ] Métriques performance mesurées
+- [ ] Actions prioritaires phase suivante listées
+
+**🚫 Interdictions :**
+- ❌ Pas de briefing générique sans phase
+- ❌ Pas de timestamp approximatif
+- ❌ Pas de briefing incomplet
+- ❌ Pas de transition sans validation
+
+### 3. Contenu Minimal Requis
+
+**Sections Obligatoires :**
+1. **Mission & Contexte** : État actuel + objectifs
+2. **Accomplissements** : Phase précédente terminée
+3. **Architecture Technique** : Code état, fichiers clés
+4. **Prochaines Étapes** : Priorités + actions 8h
+5. **Problèmes Connus** : Solutions éprouvées
+6. **Métriques** : Performance + benchmarks
+7. **Configuration** : Environment + setup
+8. **Checklist** : Validation avant démarrage
+
+**❌ Briefing rejeté si :**
+- Section manquante dans structure obligatoire
+- Aucun benchmark performance fourni  
+- Pas d'actions concrètes 8h première session
+- Architecture technique non documentée
+
+### 4. Référencement Croisé
+
+**📁 Documents à synchroniser :**
+- `docs/planning/IMPLEMENTATION_TRACKER_V2.md` → état phases
+- `docs/planning/IMPLEMENTATION_PLAN_V2.md` → planning global  
+- `transmission/conventions/BRIEFING_NAMING_CONVENTION.md` → convention détaillée
+- `/suivi/SESSION_X_RAPPORT_TRAVAUX.md` → rapports sessions
+
+**🔄 Workflow obligatoire :**
+1. **Fin de session** → Créer briefing avec timestamp
+2. **Validation critères** → Go/No-Go phase suivante
+3. **Mise à jour trackers** → Synchroniser progression
+4. **Archivage session** → Rapport dans `/suivi/`
+
+---
+
+## 🎯 Phases Projet Contraintes
+
+### Planning Non-Négociable
+
+| Phase | Durée Max | Livrables Obligatoires | Critères Go/No-Go |
+|-------|-----------|------------------------|-------------------|
+| **Phase 0** | 2 jours | MVP fonctionnel | Hotkey + transcription |
+| **Phase 1** | 3 jours | Performance <3s | Architecture modulaire |
+| **Phase 2** | 3 jours | UI Windows native | UX validée |
+| **Phase 3** | 2 jours | Production ready | Tests complets |
+
+### Transitions Bloquantes
+
+**🚫 Pas de passage Phase N → N+1 sans :**
+- [ ] Briefing successeur créé (format conforme)
+- [ ] Critères Go/No-Go validés
+- [ ] Architecture documentée
+- [ ] Performance cibles atteintes
+- [ ] Tests validation passés
+
+---
+
 **🚨 Ces contraintes sont NON-NÉGOCIABLES**
 
 **Toute violation nécessite autorisation explicite utilisateur** 

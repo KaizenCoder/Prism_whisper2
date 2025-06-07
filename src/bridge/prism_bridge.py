@@ -136,17 +136,56 @@ class PrismBridge:
             return self.get_smart_fallback()
     
     def try_quick_transcription(self):
-        """Tentative transcription rapide (timeout 10s)"""
+        """Transcription audio avec script optimisé"""
         try:
-            # Version simplifiée pour MVP
-            self.logger.info("Test transcription rapide...")
+            self.logger.info("Transcription audio via script optimise...")
             
-            # Pour MVP : on simule l'audio avec fallback intelligent
-            # TODO Phase 2 : Vraie intégration audio quand modèle pré-chargé
-            return None  # Force fallback pour MVP
+            # Script de transcription corrigé
+            script_path = self.project_root / "quick_transcription.py"
             
+            # Commande avec venv SuperWhisper (dépendances disponibles)
+            cmd = [str(self.superwhisper_venv), str(script_path)]
+            
+            self.logger.info("Execution transcription (3s audio)...")
+            
+            # Exécuter avec timeout 20s (modèle peut prendre du temps au 1er lancement)
+            result = subprocess.run(
+                cmd, 
+                capture_output=True, 
+                text=True, 
+                timeout=20,
+                cwd=self.project_root
+            )
+            
+            # Parser output
+            if result.returncode == 0:
+                # Chercher ligne RESULT:
+                for line in result.stdout.split('\n'):
+                    if line.startswith('RESULT: '):
+                        transcribed_text = line[8:].strip()  # Enlever 'RESULT: '
+                        if transcribed_text and len(transcribed_text) > 1:
+                            self.logger.info(f"Transcription reussie: {transcribed_text[:50]}...")
+                            return transcribed_text
+                        else:
+                            self.logger.info("Aucun audio detecte")
+                            return None
+                
+                self.logger.warning("Pas de RESULT dans output")
+                return None
+            else:
+                # Log erreurs pour debug
+                self.logger.error(f"Script error (code {result.returncode})")
+                if result.stderr:
+                    self.logger.error(f"STDERR: {result.stderr[:200]}...")
+                if result.stdout:
+                    self.logger.info(f"STDOUT: {result.stdout[:200]}...")
+                return None
+            
+        except subprocess.TimeoutExpired:
+            self.logger.error("Timeout transcription (20s)")
+            return None
         except Exception as e:
-            self.logger.warning(f"Transcription rapide echouee: {e}")
+            self.logger.warning(f"Erreur transcription: {e}")
             return None
     
     def get_smart_fallback(self):
