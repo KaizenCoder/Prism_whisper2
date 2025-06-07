@@ -163,33 +163,337 @@ src/
 ### 📋 Optimisations Modèle (Jour 9)
 
 #### **3.1 Model & Memory** (8h)
-- [ ] **3.1.1** Quantification INT8 Whisper (-15% latence) (3h)
-- [ ] **3.1.2** Modèle distilled faster-whisper-small (2h)
-- [ ] **3.1.3** Cache intelligent 24GB VRAM (2h)
-- [ ] **3.1.4** Buffers géants GPU memory pinning (1h)
+
+##### **3.1.1 Quantification INT8 Whisper (-15% latence)** (3h)
+**🎯 Objectif :** Réduire la précision de FP32 → INT8 pour +50% vitesse inference
+**📊 Critère Go/No-Go :** Amélioration latence ≥1.5s ET accuracy ≥90%
+
+**Exemple concret :**
+```python
+# Avant (FP32) : 7.24s → Après (INT8) : 5.5s = -1.74s amélioration
+from transformers import WhisperForConditionalGeneration
+import torch
+
+# Configuration INT8 optimisée RTX 3090
+model = WhisperForConditionalGeneration.from_pretrained(
+    "openai/whisper-medium",
+    torch_dtype=torch.int8,
+    device_map="cuda:0",
+    load_in_8bit=True
+)
+
+# Test accuracy sur phrases référence
+test_phrases = [
+    "Ceci est un système de transcription automatique",
+    "Alors faisons le test pour voir ce qui est écrit", 
+    "On va voir ce qu'il fait seul"
+]
+# Seuil : accuracy ≥90% vs FP32 baseline
+```
+
+**✅ GO si :** Latence ≤5.5s ET accuracy ≥90%  
+**❌ NO-GO si :** Latence >6s OU accuracy <85%
+
+##### **3.1.2 Modèle distilled faster-whisper-small** (2h)
+**🎯 Objectif :** Whisper-medium 769M → faster-whisper-small 244M (-68% taille)
+**📊 Critère Go/No-Go :** Amélioration latence ≥1s ET accuracy ≥85%
+
+**Exemple concret :**
+```python
+# Migration vers faster-whisper optimisé
+from faster_whisper import WhisperModel
+
+# Configuration optimale RTX 3090
+model = WhisperModel(
+    "small",
+    device="cuda",
+    compute_type="int8",
+    cpu_threads=4,
+    num_workers=2
+)
+
+# Benchmark : 244M modèle vs 769M actuel
+# Test terrain : même 4 phrases validation
+# Seuil : latence -1s minimum acceptable
+```
+
+**✅ GO si :** Latence ≤6s ET accuracy ≥85%  
+**❌ NO-GO si :** Latence >6.5s OU accuracy <80%
+
+##### **3.1.3 Cache intelligent 24GB VRAM** (2h)
+**🎯 Objectif :** Exploiter 24GB RTX 3090 pour cache modèles multiples
+**📊 Critère Go/No-Go :** Amélioration cold start ≥0.5s ET utilisation VRAM ≥20GB
+
+**Exemple concret :**
+```python
+# Cache système intelligent 24GB
+class VRAM_Cache_Manager:
+    def __init__(self):
+        self.cache_size = 20 * 1024**3  # 20GB sur 24GB disponible
+        self.models = {
+            'whisper_int8': None,      # 4GB
+            'whisper_fp16': None,      # 8GB  
+            'faster_whisper': None,    # 2GB
+            'audio_buffers': None,     # 4GB
+            'temp_workspace': None     # 2GB
+        }
+    
+    def preload_optimal_model(self):
+        # Sélection dynamique selon contexte
+        return self.models['whisper_int8']  # Défaut optimisé
+```
+
+**✅ GO si :** Cold start ≤1.5s ET VRAM usage ≥20GB  
+**❌ NO-GO si :** Cold start >2s OU VRAM usage <18GB
+
+##### **3.1.4 Buffers géants GPU memory pinning** (1h)
+**🎯 Objectif :** Éliminer transfers CPU↔GPU avec buffers pinned
+**📊 Critère Go/No-Go :** Amélioration pipeline ≥0.3s ET stabilité GPU 100%
+
+**Exemple concret :**
+```python
+# Buffers GPU pinned optimisés
+import torch
+
+class GPU_Buffer_Manager:
+    def __init__(self):
+        # Allocation buffers géants RTX 3090
+        self.audio_buffer = torch.cuda.FloatTensor(
+            size=(48000 * 30,),  # 30s audio buffer
+            device='cuda:0'
+        ).pin_memory()
+        
+        self.result_buffer = torch.cuda.CharTensor(
+            size=(10000,),  # 10k chars résultat
+            device='cuda:0'
+        ).pin_memory()
+    
+    def process_audio(self, audio_data):
+        # Zéro copy CPU → GPU
+        self.audio_buffer[:len(audio_data)] = audio_data
+        return self.audio_buffer
+```
+
+**✅ GO si :** Transfer time ≤0.1s ET GPU stable 100%  
+**❌ NO-GO si :** Transfer time >0.2s OU GPU errors >0%
 
 ### 📋 Pipeline Streaming (Jour 10)
 
 #### **3.2 Advanced Pipeline** (8h)
-- [ ] **3.2.1** Streaming temps réel (transcription pendant capture) (3h)
-- [ ] **3.2.2** 4 CUDA streams parallèles RTX 3090 (2h)
-- [ ] **3.2.3** VAD (Voice Activity Detection) prédictif (2h)
-- [ ] **3.2.4** Validation finale <3s + benchmarks (1h)
+
+##### **3.2.1 Streaming temps réel (transcription pendant capture)** (3h)
+**🎯 Objectif :** Pipeline parallèle capture + transcription simultanée
+**📊 Critère Go/No-Go :** Amélioration latence ≥2s ET qualité audio maintenue
+
+**Exemple concret :**
+```python
+# Pipeline streaming advanced
+import asyncio
+from concurrent.futures import ThreadPoolExecutor
+
+class Streaming_Pipeline:
+    def __init__(self):
+        self.chunk_size = 1024  # Chunks optimaux RTX 3090
+        self.overlap = 0.5      # 50% overlap pour continuité
+        
+    async def stream_transcription(self):
+        # Capture audio chunk 1
+        chunk1 = await self.capture_audio_chunk()
+        
+        # Pendant capture chunk 2, transcription chunk 1
+        chunk2_task = asyncio.create_task(self.capture_audio_chunk())
+        transcription1 = await self.transcribe_chunk(chunk1)
+        
+        chunk2 = await chunk2_task
+        # Résultat immédiat sans attendre fin capture
+        return transcription1
+
+# Test benchmark : 
+# Avant (séquentiel) : 7.24s
+# Après (streaming) : 4.5s = -2.74s amélioration
+```
+
+**✅ GO si :** Latence ≤5s ET qualité audio ≥95%  
+**❌ NO-GO si :** Latence >6s OU qualité audio <90%
+
+##### **3.2.2 4 CUDA streams parallèles RTX 3090** (2h)
+**🎯 Objectif :** Exploiter 4 streams GPU simultanés pour pipeline parallèle
+**📊 Critère Go/No-Go :** Amélioration throughput ≥30% ET utilisation GPU ≥80%
+
+**Exemple concret :**
+```python
+# 4 CUDA streams management
+import torch.cuda
+
+class CUDA_Streams_Manager:
+    def __init__(self):
+        # 4 streams optimisés RTX 3090
+        self.streams = [
+            torch.cuda.Stream() for _ in range(4)
+        ]
+        self.current_stream = 0
+    
+    def parallel_processing(self, audio_chunks):
+        results = []
+        for i, chunk in enumerate(audio_chunks):
+            stream_id = i % 4
+            with torch.cuda.stream(self.streams[stream_id]):
+                result = self.process_chunk(chunk)
+                results.append(result)
+        
+        # Synchronisation finale
+        torch.cuda.synchronize()
+        return results
+
+# Benchmark attendu :
+# 1 stream : 100% baseline
+# 4 streams : 130% throughput = +30% amélioration
+```
+
+**✅ GO si :** Throughput ≥130% ET GPU usage ≥80%  
+**❌ NO-GO si :** Throughput <120% OU GPU usage <70%
+
+##### **3.2.3 VAD (Voice Activity Detection) prédictif** (2h)
+**🎯 Objectif :** Détection voix intelligente pour optimiser processing
+**📊 Critère Go/No-Go :** Réduction processing ≥20% ET false positives ≤5%
+
+**Exemple concret :**
+```python
+# VAD prédictif optimisé
+import torch
+import torchaudio
+
+class VAD_Predictor:
+    def __init__(self):
+        # Modèle VAD léger RTX 3090
+        self.vad_model = torch.jit.load('silero_vad.jit')
+        self.threshold = 0.5
+        
+    def predict_voice_activity(self, audio_chunk):
+        # Prédiction ultra-rapide <10ms
+        with torch.no_grad():
+            speech_prob = self.vad_model(audio_chunk)
+            
+        # Optimisation : skip transcription si silence
+        if speech_prob < self.threshold:
+            return None  # Économie 80% processing sur silence
+            
+        return speech_prob
+
+# Benchmark terrain :
+# Sans VAD : 7.24s latence moyenne
+# Avec VAD : 5.8s latence = -1.44s amélioration
+```
+
+**✅ GO si :** Processing reduction ≥20% ET false positives ≤5%  
+**❌ NO-GO si :** Processing reduction <15% OU false positives >10%
+
+##### **3.2.4 Validation finale <3s + benchmarks** (1h)
+**🎯 Objectif :** Validation terrain complète toutes optimisations
+**📊 Critère Go/No-Go :** Latence ≤3s ET accuracy ≥90% ET stabilité 100%
+
+**Exemple concret :**
+```python
+# Test final validation
+def validation_finale():
+    # Mêmes 4 phrases terrain Phase 2
+    test_cases = [
+        "Ceci est un système de transcription automatique",
+        "Alors faisons le test pour voir ce qui est écrit", 
+        "On va voir ce qu'il fait seul",
+        "Je la monte dans mon tiroir"
+    ]
+    
+    # Benchmark complet
+    results = []
+    for phrase in test_cases:
+        start_time = time.time()
+        transcription = transcribe_optimized(phrase)
+        latency = time.time() - start_time
+        
+        accuracy = calculate_accuracy(phrase, transcription)
+        results.append({
+            'latency': latency,
+            'accuracy': accuracy,
+            'phrase': phrase
+        })
+    
+    # Critères validation
+    avg_latency = sum(r['latency'] for r in results) / len(results)
+    avg_accuracy = sum(r['accuracy'] for r in results) / len(results)
+    
+    return {
+        'avg_latency': avg_latency,    # Objectif : ≤3.0s
+        'avg_accuracy': avg_accuracy,  # Objectif : ≥90%
+        'all_results': results
+    }
+```
+
+**✅ GO FINAL si :** 
+- Latence moyenne ≤3.0s 
+- Accuracy moyenne ≥90%
+- 4/4 tests réussis
+- GPU stable 100%
+
+**❌ NO-GO FINAL si :**
+- Latence moyenne >3.5s
+- Accuracy moyenne <85%  
+- ≥2 tests échoués
+- GPU instable
 
 ### 🎯 **Objectifs Performance Phase 3**
-- **Latence cible** : <3s (vs 7.24s actuel)
-- **GPU exploité** : RTX 3090 24GB pleine utilisation
-- **Qualité** : Maintenue à 95%+ vs version actuelle
+- **Latence cible** : <3s (vs 7.24s actuel) = **-58% amélioration**
+- **GPU exploité** : RTX 3090 24GB pleine utilisation (20GB+)
+- **Qualité** : Maintenue à 90%+ vs 95%+ actuelle
 - **Stabilité** : 99.9% uptime conservée
 
 ### 📊 **Optimisations Ciblées RTX 3090**
-| Optimisation | Gain Estimé | Complexité | RTX 3090 Advantage |
-|-------------|-------------|------------|-------------------|
-| INT8 Quantification | -2.0s | Moyenne | 24GB = modèles multiples |
-| Streaming Pipeline | -1.5s | Élevée | 4 streams vs 3 |
-| Cache VRAM Géant | -1.0s | Faible | 24GB vs 12GB standard |
-| VAD Prédictif | -0.7s | Moyenne | Plus de marge GPU |
-| **TOTAL** | **-5.2s** | - | **7.24s → 2.0s** ✅ |
+| Optimisation | Gain Estimé | Complexité | RTX 3090 Advantage | Critère Go/No-Go |
+|-------------|-------------|------------|-------------------|------------------|
+| INT8 Quantification | -1.5s | Moyenne | 24GB = modèles multiples | Latence ≤5.5s + Accuracy ≥90% |
+| Streaming Pipeline | -2.0s | Élevée | 4 streams vs 3 standard | Latence ≤5.0s + Qualité ≥95% |
+| Cache VRAM Géant | -1.0s | Faible | 24GB vs 12GB standard | Cold start ≤1.5s + VRAM ≥20GB |
+| VAD Prédictif | -0.7s | Moyenne | Plus de marge GPU | Processing -20% + False+ ≤5% |
+| **TOTAL** | **-5.2s** | - | **7.24s → 2.0s** | **Latence ≤3.0s + Accuracy ≥90%** |
+
+### ⚠️ **Critères d'Arrêt Immédiat Phase 3**
+```
+🔴 STOP IMMÉDIAT si :
+├── GPU température >85°C (surchauffe RTX 3090)
+├── Accuracy <80% (dégradation critique)
+├── Latence >8s (régression vs Phase 2)
+├── Crashes système >2 (instabilité)
+└── VRAM errors (corruption mémoire)
+
+🟡 VIGILANCE si :
+├── Latence 5-6s (amélioration faible)
+├── Accuracy 80-90% (dégradation modérée)  
+├── GPU usage <70% (sous-exploitation)
+├── 1 crash système (surveillance renforcée)
+└── VRAM usage <18GB (potentiel non exploité)
+```
+
+### 📈 **Validation Continue Phase 3**
+```
+Chaque optimisation (3.1.1, 3.1.2, etc.) :
+├── Test latence immédiat (1 phrase)
+├── Test accuracy (phrase référence)
+├── Monitor GPU (température + mémoire)
+├── Décision GO/NO-GO avant optimisation suivante
+└── Rollback si NO-GO (retour état précédent)
+
+Fin Jour 1 :
+├── Validation cumulative 3.1.1 → 3.1.4
+├── Latence cible intermédiaire ≤5s
+├── Accuracy maintenue ≥90%
+└── Décision GO/NO-GO Jour 2
+
+Fin Jour 2 :
+├── Validation finale complète
+├── 4 transcriptions terrain validation
+├── Benchmarks performance vs Phase 2
+└── Décision GO Production Phase 4
+```
 
 ---
 

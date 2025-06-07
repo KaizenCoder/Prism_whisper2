@@ -33,6 +33,11 @@ faster-whisper = "^0.10.0"
 torch = {version = "^2.0.0", source = "pytorch"}
 torchaudio = {version = "^2.0.0", source = "pytorch"}
 
+# Phase 3 Performance dependencies
+transformers = "^4.21.0"
+accelerate = "^0.21.0"
+optimum = "^1.13.0"
+
 # Audio processing
 sounddevice = "^0.4.6"
 numpy = "^1.24.0"

@@ -198,59 +198,326 @@ src/
 └── Architecture V5 unstable
 ```
 
----
+## 🎯 **CRITÈRES GO/NO-GO DÉTAILLÉS PAR IMPLÉMENTATION**
 
-## 📈 **PLAN DE TESTS & VALIDATION PHASE 3**
+### **📊 3.1.1 Quantification INT8 - Critères Validation**
+**🎯 Objectif :** FP32 → INT8 pour +50% vitesse inference  
+**⏱️ Temps alloué :** 3h maximum
 
-### **🧪 Tests Continus Requis**
-```
-Jour 1 après chaque optimisation :
-├── Benchmark latence (10 transcriptions)
-├── Test accuracy (5 phrases référence)  
-├── Monitoring GPU (temperature + memory)
-└── Stress test (30min continuous)
+**✅ GO si toutes conditions respectées :**
+- **Latence :** ≤5.5s (amélioration ≥1.5s vs 7.24s baseline)
+- **Accuracy :** ≥90% sur phrases référence terrain
+- **GPU stable :** Température ≤80°C, zéro VRAM error
+- **Implémentation :** Code INT8 fonctionnel sans crash
 
-Jour 2 validation finale :
-├── Tests terrain conditions réelles
-├── Comparison Phase 2 vs Phase 3
-├── Documentation performance gains
-└── Validation critères <3s
-```
+**❌ NO-GO si une condition échoue :**
+- **Latence :** >6.0s (amélioration <1s inacceptable)
+- **Accuracy :** <85% (dégradation critique utilisateur)
+- **GPU instable :** Crashes, température >85°C, VRAM errors
+- **Bugs critiques :** Crashes application, erreurs CUDA
 
-### **📊 Métriques Success Phase 3**
-| Métrique | Phase 2 | Cible Phase 3 | Méthode Test |
-|----------|---------|---------------|--------------|
-| **Latence terrain** | 7.24s | <3s | 4 transcriptions type |
-| **Accuracy** | >95% | >90% | Phrases référence fixes |
-| **GPU usage** | 15.9GB | 20GB+ | nvidia-smi monitoring |
-| **Startup time** | 2s | <3s | Service restart tests |
-
----
-
-## 📋 **CHECKLIST TRANSITION PHASE 3**
-
-### **✅ Prérequis Validés**
-- [✅] Phase 2.1 + 2.2 terminées avec succès
-- [✅] 4 transcriptions terrain validées  
-- [✅] RTX 3090 24GB détecté et stable
-- [✅] Architecture V4 production-ready
-- [✅] Documentation mise à jour complète
-
-### **🎯 Actions Immédiates Phase 3**
-```
-H+0    | Setup environnement optimisations
-H+1    | Backup configuration Phase 2 stable  
-H+2    | Installation dépendances Phase 3
-H+3    | Tests baseline performance actuels
-H+4    | Début 3.1.1 INT8 Quantification
+**📋 Test validation obligatoire :**
+```python
+# Phrases test exactes Phase 2
+test_phrases = [
+    "Ceci est un système de transcription automatique",   # 7.32s → cible 5.5s
+    "Alors faisons le test pour voir ce qui est écrit",   # 7.40s → cible 5.5s
+    "On va voir ce qu'il fait seul"                       # 6.92s → cible 5.2s
+]
+# Moyenne Phase 2 : 7.24s → Cible INT8 : ≤5.5s
 ```
 
-### **📋 Livrables Attendus Phase 3**
-- [ ] Engine V5 avec toutes optimisations
-- [ ] Latence <3s validée terrain  
-- [ ] Documentation optimisations RTX 3090
-- [ ] Tests performance complets
-- [ ] Architecture V5 production-ready
+### **📊 3.1.2 Faster-Whisper Small - Critères Validation**
+**🎯 Objectif :** 769M → 244M modèle (-68% taille, +vitesse)  
+**⏱️ Temps alloué :** 2h maximum
+
+**✅ GO si toutes conditions respectées :**
+- **Latence :** ≤6.0s (amélioration ≥1.0s)
+- **Accuracy :** ≥85% (seuil acceptable modèle plus petit)
+- **Mémoire GPU :** ≤6GB utilisation (vs 15.9GB actuel)
+- **Qualité audio :** Pas de distorsion, artéfacts
+
+**❌ NO-GO si une condition échoue :**
+- **Latence :** >6.5s (amélioration <0.5s insuffisante)
+- **Accuracy :** <80% (qualité inacceptable utilisateur)
+- **Bugs modèle :** Erreurs loading, incompatibilité CUDA
+- **Qualité dégradée :** Transcriptions incohérentes
+
+**🔄 Action si NO-GO :** Rollback vers Whisper-medium + INT8
+
+### **📊 3.1.3 Cache VRAM 24GB - Critères Validation**
+**🎯 Objectif :** Exploiter RTX 3090 24GB pour cache intelligent  
+**⏱️ Temps alloué :** 2h maximum
+
+**✅ GO si toutes conditions respectées :**
+- **Cold start :** ≤1.5s (amélioration ≥0.5s vs 2s actuel)
+- **VRAM usage :** ≥20GB utilisation (83% des 24GB)
+- **Cache hits :** ≥90% ratio (efficacité cache)
+- **Stabilité :** Zéro fragmentation mémoire, pas de leaks
+
+**❌ NO-GO si une condition échoue :**
+- **Cold start :** >2.0s (pas d'amélioration vs actuel)
+- **VRAM usage :** <18GB (sous-exploitation RTX 3090)
+- **Cache inefficace :** <70% hit ratio
+- **Instabilité :** Memory leaks, fragmentation VRAM
+
+**📈 Métriques monitoring obligatoires :**
+```bash
+# Surveillance VRAM continue
+nvidia-smi --query-gpu=memory.used,memory.free,temperature.gpu --format=csv -l 1
+# Cible : 20GB+ used, <75°C température
+```
+
+### **📊 3.1.4 GPU Memory Pinning - Critères Validation**
+**🎯 Objectif :** Éliminer CPU↔GPU transfers avec buffers pinned  
+**⏱️ Temps alloué :** 1h maximum
+
+**✅ GO si toutes conditions respectées :**
+- **Transfer time :** ≤0.1s CPU→GPU (amélioration ≥0.3s)
+- **GPU stable :** 100% stability, zéro corruption
+- **Pipeline smooth :** Pas de stuttering, latence constante
+- **Memory efficiency :** Buffers correctement alloués
+
+**❌ NO-GO si une condition échoue :**
+- **Transfer time :** >0.2s (pas d'amélioration significative)
+- **GPU errors :** CUDA errors, corruption données
+- **Performance dégradée :** Stuttering, latence variable
+- **Memory issues :** Buffers mal alloués, leaks
+
+### **📊 3.2.1 Streaming Pipeline - Critères Validation**
+**🎯 Objectif :** Transcription pendant capture (parallélisation)  
+**⏱️ Temps alloué :** 3h maximum
+
+**✅ GO si toutes conditions respectées :**
+- **Latence :** ≤5.0s (amélioration ≥2.0s MAJEURE)
+- **Qualité audio :** ≥95% (pas de perte streaming)
+- **Synchronisation :** Parfaite entre chunks audio
+- **Stabilité :** Zéro désynchronisation, pas de drops
+
+**❌ NO-GO si une condition échoue :**
+- **Latence :** >6.0s (amélioration <1s insuffisante)
+- **Qualité audio :** <90% (dégradation streaming)
+- **Désynchronisation :** Chunks audio perdus/corrompus
+- **Instabilité :** Streaming pipeline crashes
+
+**⚠️ CRITIQUE :** Cette optimisation est la PLUS IMPACTANTE (-2s gain estimé)
+
+### **📊 3.2.2 4 CUDA Streams - Critères Validation**
+**🎯 Objectif :** Exploiter RTX 3090 4 streams parallèles  
+**⏱️ Temps alloué :** 2h maximum
+
+**✅ GO si toutes conditions respectées :**
+- **Throughput :** ≥130% vs 1 stream (amélioration +30%)
+- **GPU usage :** ≥80% utilisation RTX 3090
+- **Parallélisation :** 4 streams actifs simultanément
+- **Synchronisation :** Parfaite coordination streams
+
+**❌ NO-GO si une condition échoue :**
+- **Throughput :** <120% (amélioration <20% insuffisante)
+- **GPU usage :** <70% (sous-exploitation RTX 3090)
+- **Conflicts streams :** Erreurs synchronisation CUDA
+- **Performance :** Dégradation vs 3 streams actuels
+
+### **📊 3.2.3 VAD Prédictif - Critères Validation**
+**🎯 Objectif :** Voice Activity Detection pour optimiser processing  
+**⏱️ Temps alloué :** 2h maximum
+
+**✅ GO si toutes conditions respectées :**
+- **Processing reduction :** ≥20% (économie calculs silence)
+- **False positives :** ≤5% (qualité détection)
+- **Latence VAD :** <10ms (overhead négligeable)
+- **Accuracy maintenue :** ≥90% transcription globale
+
+**❌ NO-GO si une condition échoue :**
+- **Processing reduction :** <15% (gain insuffisant)
+- **False positives :** >10% (qualité dégradée)
+- **Latence VAD :** >20ms (overhead trop élevé)
+- **Accuracy dégradée :** <85% (qualité compromise)
+
+### **📊 3.2.4 Validation Finale - Critères GO Production**
+**🎯 Objectif :** Validation complète toutes optimisations cumulées  
+**⏱️ Temps alloué :** 1h maximum
+
+**✅ GO PRODUCTION si TOUTES conditions respectées :**
+- **Latence moyenne :** ≤3.0s sur 4 phrases terrain (objectif final)
+- **Accuracy moyenne :** ≥90% (qualité utilisateur acceptable)  
+- **Stabilité :** 4/4 tests réussis, zéro crash
+- **GPU optimal :** ≥20GB VRAM utilisé, <80°C température
+- **Performance gain :** ≥58% amélioration vs 7.24s baseline
+
+**❌ NO-GO PRODUCTION si UNE condition échoue :**
+- **Latence moyenne :** >3.5s (objectif manqué)
+- **Accuracy moyenne :** <85% (qualité inacceptable)
+- **Instabilité :** ≥2 tests échoués ou crashes système
+- **GPU sous-exploité :** <18GB VRAM ou température >85°C
+- **Gain insuffisant :** <40% amélioration (ROI faible)
+
+**🔄 Actions selon résultat :**
+```
+✅ GO PRODUCTION → Phase 4 Packaging + Documentation
+❌ NO-GO PRODUCTION → Rollback Phase 2 stable + Analyse post-mortem
+🟡 RÉSULTATS MIXTES → Optimisations partielles + Re-test ciblé
+```
+
+## 🚨 **MÉCANISME D'ARRÊT D'URGENCE PHASE 3**
+
+### **⛔ STOP IMMÉDIAT OBLIGATOIRE**
+```
+🔴 ARRÊT IMMÉDIAT si :
+├── GPU température >85°C pendant >30s (risque hardware)
+├── ≥3 crashes système (instabilité critique)  
+├── VRAM corruption errors (données corrompues)
+├── Accuracy <75% (qualité inacceptable)
+└── Latence >10s (régression majeure vs baseline)
+```
+
+### **🟡 SURVEILLANCE RENFORCÉE**
+```
+⚠️ VIGILANCE si :
+├── Latence 5-6s (amélioration faible mais acceptable)
+├── Accuracy 80-90% (dégradation modérée surveillée)
+├── 1-2 crashes (instabilité naissante)
+├── GPU usage <70% (potentiel RTX 3090 sous-exploité)
+└── VRAM usage <18GB (ressources non optimisées)
+```
+
+### **📊 DASHBOARD MONITORING OBLIGATOIRE**
+```python
+# Métriques à surveiller en temps réel
+monitoring_metrics = {
+    'latency_current': 0.0,          # Cible : ≤3.0s
+    'accuracy_current': 0.0,         # Cible : ≥90%
+    'gpu_temp': 0.0,                 # Limite : 85°C
+    'vram_usage_gb': 0.0,            # Cible : ≥20GB
+    'gpu_usage_percent': 0.0,        # Cible : ≥80%
+    'crashes_count': 0,              # Limite : <3
+    'optimization_step': '',         # Tracking étape actuelle
+    'rollback_point': 'phase2'       # Dernier état stable
+}
+```
+
+### **🎯 DÉCISION GATES OBLIGATOIRES**
+
+**Gate 1 - Fin Jour 1 (après 3.1.1 → 3.1.4) :**
+```
+✅ CONTINUE Jour 2 si :
+├── Latence ≤5.0s (amélioration ≥30%)
+├── Accuracy ≥90% (qualité maintenue)
+└── GPU stable (température + mémoire)
+
+❌ STOP Phase 3 si :
+├── Latence >6.0s (amélioration <17%)
+├── Accuracy <85% (dégradation critique)
+└── GPU instable (crashes/température)
+```
+
+**Gate 2 - Fin Jour 2 (après 3.2.1 → 3.2.4) :**
+```
+✅ GO PRODUCTION si :
+├── Latence ≤3.0s (objectif atteint)
+├── Accuracy ≥90% (qualité validée)
+└── 4/4 tests terrain réussis
+
+❌ ROLLBACK Phase 2 si :
+├── Latence >3.5s (objectif manqué)
+├── Accuracy <85% (qualité dégradée)
+└── ≥2 tests terrain échoués
+```
+
+## 📈 **EXEMPLES CONCRETS VALIDATION PHASE 3**
+
+### **🧪 Script Test Automatisé Obligatoire**
+```python
+# Test validation automatique chaque optimisation
+def validate_optimization_step(step_name, audio_samples):
+    """
+    Validation automatique avec critères go/no-go
+    """
+    results = {
+        'step': step_name,
+        'timestamp': datetime.now(),
+        'latencies': [],
+        'accuracies': [],
+        'gpu_metrics': {},
+        'decision': None
+    }
+    
+    # Test sur 4 phrases terrain Phase 2
+    test_phrases = [
+        "Ceci est un système de transcription automatique",
+        "Alors faisons le test pour voir ce qui est écrit", 
+        "On va voir ce qu'il fait seul",
+        "Je la monte dans mon tiroir"
+    ]
+    
+    for phrase in test_phrases:
+        # Mesure latence
+        start_time = time.time()
+        transcription = transcribe_optimized(phrase)
+        latency = time.time() - start_time
+        
+        # Calcul accuracy
+        accuracy = calculate_accuracy(phrase, transcription)
+        
+        results['latencies'].append(latency)
+        results['accuracies'].append(accuracy)
+    
+    # Métriques moyennes
+    avg_latency = sum(results['latencies']) / len(results['latencies'])
+    avg_accuracy = sum(results['accuracies']) / len(results['accuracies'])
+    
+    # GPU monitoring
+    gpu_temp = get_gpu_temperature()
+    vram_usage = get_vram_usage_gb()
+    
+    # Critères décision selon étape
+    if step_name == "3.1.1_INT8":
+        go_decision = (avg_latency <= 5.5 and avg_accuracy >= 0.90 and gpu_temp <= 80)
+    elif step_name == "3.2.1_STREAMING":
+        go_decision = (avg_latency <= 5.0 and avg_accuracy >= 0.95 and gpu_temp <= 80)
+    elif step_name == "3.2.4_FINAL":
+        go_decision = (avg_latency <= 3.0 and avg_accuracy >= 0.90 and gpu_temp <= 80)
+    
+    results['decision'] = 'GO' if go_decision else 'NO-GO'
+    results['avg_latency'] = avg_latency
+    results['avg_accuracy'] = avg_accuracy
+    results['gpu_temp'] = gpu_temp
+    results['vram_usage'] = vram_usage
+    
+    return results
+
+# Utilisation obligatoire après chaque optimisation
+validation_result = validate_optimization_step("3.1.1_INT8", audio_samples)
+if validation_result['decision'] == 'NO-GO':
+    print(f"⛔ ARRÊT {step_name} - Critères non respectés")
+    rollback_to_previous_state()
+else:
+    print(f"✅ CONTINUE {step_name} - Validation réussie")
+```
+
+### **📊 Benchmarks Références Obligatoires**
+```python
+# Métriques baseline Phase 2 (références absolues)
+PHASE2_BASELINE = {
+    'avg_latency': 7.24,           # Moyenne 4 transcriptions terrain
+    'individual_latencies': [7.32, 7.40, 6.92, 7.33],
+    'avg_accuracy': 0.96,          # >95% qualité actuelle
+    'gpu_vram_used': 15.9,         # GB RTX 3090
+    'gpu_temp_idle': 45,           # °C température repos
+    'gpu_temp_load': 72,           # °C température charge
+    'stability_crashes': 0         # Zéro crash validé
+}
+
+# Objectifs Phase 3 (cibles à atteindre)
+PHASE3_TARGETS = {
+    'avg_latency': 3.0,            # ≤3s objectif final (-58%)
+    'intermediate_latency': 5.0,   # ≤5s objectif Jour 1 (-31%)
+    'min_accuracy': 0.90,          # ≥90% acceptable (vs 96%)
+    'gpu_vram_target': 20.0,       # ≥20GB exploitation RTX 3090
+    'gpu_temp_limit': 85,          # ≤85°C température max
+    'max_crashes': 2               # <3 crashes acceptable
+}
+```
 
 ---
 
