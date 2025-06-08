@@ -1,0 +1,147 @@
+{
+  "test_info": {
+    "timestamp": "2025-06-09T01:16:26.775802",
+    "duration": 76.74164915084839,
+    "device_id": 4,
+    "bypass_mode": false,
+    "engine": "SuperWhisper2 Engine V5 Phase 3",
+    "gpu": "RTX 3090 24GB"
+  },
+  "metrics": {
+    "similarity": 53.63175675675676,
+    "word_accuracy": 69.82248520710058,
+    "wer": 30.17751479289941,
+    "segments": 25,
+    "total_chars": 1192,
+    "callbacks": 25
+  },
+  "reference_text": "Bonjour, ceci est un test de validation pour SuperWhisper2. Je vais maintenant énoncer plusieurs phrases de complexité croissante pour évaluer la précision de transcription.\nPremièrement, des mots simples : chat, chien, maison, voiture, ordinateur, téléphone.\nDeuxièmement, des phrases courtes : Il fait beau aujourd'hui. Le café est délicieux. J'aime la musique classique.\nTroisièmement, des phrases plus complexes : L'intelligence artificielle transforme notre manière de travailler et de communiquer dans le monde moderne.\nQuatrièmement, des termes techniques : algorithme, machine learning, GPU RTX 3090, faster-whisper, quantification INT8, latence de transcription.\nCinquièmement, des nombres et dates : vingt-trois, quarante-sept, mille neuf cent quatre-vingt-quinze, le quinze janvier deux mille vingt-quatre.\nSixièmement, des mots difficiles : chrysanthème, anticonstitutionnellement, prestidigitateur, kakémono, yaourt.\nSeptièmement, une phrase longue et complexe : L'optimisation des performances de transcription vocale nécessite une approche méthodique combinant la sélection appropriée des modèles, l'ajustement des paramètres de traitement, et l'implémentation d'algorithmes de post-traitement pour améliorer la qualité du résultat final.\nFin du test de validation.",
+  "transcription": "Bonjour, ceci est un test de vidéo. Pour Super Whisper 2, je vais maintenant énoncer plusieurs... une phase de complexité croissante pour évaluer la... précision de transcription, premièrement des mots 5. chat, chien, maison, voiture, ordinateur, téléphone... Deuxièmement, des phrases courtes. Il fait beau aujourd'hui. Le café est délicieux et j'aime la musique classique. des phrases plus complexes, l'intelligence artificielle. transforme notre manière de travailler et de communiquer dans le monde moderne. Quatrièmement, des termes techniques algorithmes. Machine Learning, GPU RTX 3090. FasterWhisper quantification INT8 La torse de transcription, cinquièmement des nombres et dates. 23-47-1995 le 15 janvier 2024. Sixièmement démo difficile, je le fais en thème. anticonstitutionnellement, prestidigitateurs et… Kakemono, yaourt, c'est-à-dire une phrase longue. complexe, l'optimisation des performances. notre inscription vocale nécessitée. une approche méthodique combinant la sélection appropriée. Il y a des modèles, justement, des paramètres de frais. et l'implémentation d'algorithmes de poste. traitement pour améliorer la qualité du résultat final. Fin du test de validation. ",
+  "segments": [
+    {
+      "text": "Bonjour, ceci est un test de vidéo.",
+      "timestamp": 4.7315099239349365,
+      "source": "engine_v5"
+    },
+    {
+      "text": "Pour Super Whisper 2, je vais maintenant énoncer plusieurs...",
+      "timestamp": 7.887826681137085,
+      "source": "engine_v5"
+    },
+    {
+      "text": "une phase de complexité croissante pour évaluer la...",
+      "timestamp": 10.814268827438354,
+      "source": "engine_v5"
+    },
+    {
+      "text": "précision de transcription, premièrement des mots 5.",
+      "timestamp": 13.866743564605713,
+      "source": "engine_v5"
+    },
+    {
+      "text": "chat, chien, maison, voiture, ordinateur, téléphone...",
+      "timestamp": 16.823511838912964,
+      "source": "engine_v5"
+    },
+    {
+      "text": "Deuxièmement, des phrases courtes. Il fait beau aujourd'hui.",
+      "timestamp": 19.965117931365967,
+      "source": "engine_v5"
+    },
+    {
+      "text": "Le café est délicieux et j'aime la musique classique.",
+      "timestamp": 22.825071096420288,
+      "source": "engine_v5"
+    },
+    {
+      "text": "des phrases plus complexes, l'intelligence artificielle.",
+      "timestamp": 25.863378524780273,
+      "source": "engine_v5"
+    },
+    {
+      "text": "transforme notre manière de travailler et de communiquer dans le monde moderne.",
+      "timestamp": 28.85639452934265,
+      "source": "engine_v5"
+    },
+    {
+      "text": "Quatrièmement, des termes techniques algorithmes.",
+      "timestamp": 31.895094633102417,
+      "source": "engine_v5"
+    },
+    {
+      "text": "Machine Learning, GPU RTX 3090.",
+      "timestamp": 34.7528932094574,
+      "source": "engine_v5"
+    },
+    {
+      "text": "FasterWhisper quantification INT8",
+      "timestamp": 37.82667326927185,
+      "source": "engine_v5"
+    },
+    {
+      "text": "La torse de transcription, cinquièmement des nombres et dates.",
+      "timestamp": 40.865966796875,
+      "source": "engine_v5"
+    },
+    {
+      "text": "23-47-1995",
+      "timestamp": 43.812949419021606,
+      "source": "engine_v5"
+    },
+    {
+      "text": "le 15 janvier 2024.",
+      "timestamp": 46.75599145889282,
+      "source": "engine_v5"
+    },
+    {
+      "text": "Sixièmement démo difficile, je le fais en thème.",
+      "timestamp": 49.9109103679657,
+      "source": "engine_v5"
+    },
+    {
+      "text": "anticonstitutionnellement, prestidigitateurs et…",
+      "timestamp": 52.800443172454834,
+      "source": "engine_v5"
+    },
+    {
+      "text": "Kakemono, yaourt, c'est-à-dire une phrase longue.",
+      "timestamp": 55.933802366256714,
+      "source": "engine_v5"
+    },
+    {
+      "text": "complexe, l'optimisation des performances.",
+      "timestamp": 58.76721978187561,
+      "source": "engine_v5"
+    },
+    {
+      "text": "notre inscription vocale nécessitée.",
+      "timestamp": 61.84248495101929,
+      "source": "engine_v5"
+    },
+    {
+      "text": "une approche méthodique combinant la sélection appropriée.",
+      "timestamp": 64.8469033241272,
+      "source": "engine_v5"
+    },
+    {
+      "text": "Il y a des modèles, justement, des paramètres de frais.",
+      "timestamp": 67.9092013835907,
+      "source": "engine_v5"
+    },
+    {
+      "text": "et l'implémentation d'algorithmes de poste.",
+      "timestamp": 70.86801815032959,
+      "source": "engine_v5"
+    },
+    {
+      "text": "traitement pour améliorer la qualité du résultat final.",
+      "timestamp": 73.86430072784424,
+      "source": "engine_v5"
+    },
+    {
+      "text": "Fin du test de validation.",
+      "timestamp": 76.74164915084839,
+      "source": "engine_v5"
+    }
+  ]
+}

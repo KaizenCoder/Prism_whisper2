@@ -1,0 +1,50 @@
+TEST ENGINE V5 ULTIMATE - RESULTS
+============================================================
+
+Date: 2025-06-09 00:56:51
+Device: Rode ID 4
+Bypass Mode: No
+
+METRICS
+------------------------------
+Similarity: 11.0%
+Word Accuracy: 3.0%
+WER: 97.0%
+Duration: 99.3s
+Segments: 17
+
+REFERENCE TEXT
+------------------------------
+Bonjour, ceci est un test de validation pour SuperWhisper2. Je vais maintenant énoncer plusieurs phrases de complexité croissante pour évaluer la précision de transcription.
+Premièrement, des mots simples : chat, chien, maison, voiture, ordinateur, téléphone.
+Deuxièmement, des phrases courtes : Il fait beau aujourd'hui. Le café est délicieux. J'aime la musique classique.
+Troisièmement, des phrases plus complexes : L'intelligence artificielle transforme notre manière de travailler et de communiquer dans le monde moderne.
+Quatrièmement, des termes techniques : algorithme, machine learning, GPU RTX 3090, faster-whisper, quantification INT8, latence de transcription.
+Cinquièmement, des nombres et dates : vingt-trois, quarante-sept, mille neuf cent quatre-vingt-quinze, le quinze janvier deux mille vingt-quatre.
+Sixièmement, des mots difficiles : chrysanthème, anticonstitutionnellement, prestidigitateur, kakémono, yaourt.
+Septièmement, une phrase longue et complexe : L'optimisation des performances de transcription vocale nécessite une approche méthodique combinant la sélection appropriée des modèles, l'ajustement des paramètres de traitement, et l'implémentation d'algorithmes de post-traitement pour améliorer la qualité du résultat final.
+Fin du test de validation.
+
+TRANSCRIPTION
+------------------------------
+Bonjour. Ceci est un test de validation pour Super Whisper 2. annoncer plusieurs phrases de complexité croissante pour évaluer la précision de transcription. Premièrement des mots simples, chien, chien, maison, voiture, ordinateur, téléphone. Deuxièmement des phrases courtes, il te fait beau aujourd'hui, le café est délicieux, j'aime l'amour. 3. Des phrases plus complexes. L'intelligence artificielle transforme notre manière. et de communiquer dans le monde moderne qu'attraivement des termes techniques algoritmes. Learning, GPU RTX 3090, Faster Whisper La tendance de transcription, 5e, 5e menthe 1, 2, 3, 4, 5, 6, 7, 8, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9 C'est précisément des mots difficiles, présentement et constitutionnellement précis. C'était moi une phrase longue et complexe. L'optimisation des performances de transcription vocale nécessite une... méthodique, combinant la sélection appropriée des modèles à juste point de vue. de traitement et l'implémentation de l'algorithme de poste traitement premier. C'est du Rétaginal, fin du théâtre d'hérilation. 
+
+SEGMENTS
+------------------------------
+[1] 15.9s: Bonjour.
+[2] 21.3s: Ceci est un test de validation pour Super Whisper 2.
+[3] 26.8s: annoncer plusieurs phrases de complexité croissante pour évaluer la précision de transcription.
+[4] 32.3s: Premièrement des mots simples, chien, chien, maison, voiture, ordinateur, téléphone.
+[5] 37.8s: Deuxièmement des phrases courtes, il te fait beau aujourd'hui, le café est délicieux, j'aime l'amour.
+[6] 43.4s: 3. Des phrases plus complexes.
+[7] 43.4s: L'intelligence artificielle transforme notre manière.
+[8] 48.9s: et de communiquer dans le monde moderne qu'attraivement des termes techniques algoritmes.
+[9] 54.5s: Learning, GPU RTX 3090, Faster Whisper
+[10] 59.9s: La tendance de transcription, 5e, 5e menthe
+[11] 66.4s: 1, 2, 3, 4, 5, 6, 7, 8, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9
+[12] 71.9s: C'est précisément des mots difficiles, présentement et constitutionnellement précis.
+[13] 77.3s: C'était moi une phrase longue et complexe.
+[14] 82.7s: L'optimisation des performances de transcription vocale nécessite une...
+[15] 88.1s: méthodique, combinant la sélection appropriée des modèles à juste point de vue.
+[16] 93.7s: de traitement et l'implémentation de l'algorithme de poste traitement premier.
+[17] 99.3s: C'est du Rétaginal, fin du théâtre d'hérilation.

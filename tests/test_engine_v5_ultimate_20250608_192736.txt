@@ -1,0 +1,50 @@
+TEST ENGINE V5 ULTIMATE - RESULTS
+============================================================
+
+Date: 2025-06-08 19:27:36
+Device: Rode ID 4
+Bypass Mode: No
+
+METRICS
+------------------------------
+Similarity: 30.6%
+Word Accuracy: 67.5%
+WER: 32.5%
+Duration: 82.1s
+Segments: 17
+
+REFERENCE TEXT
+------------------------------
+Bonjour, ceci est un test de validation pour SuperWhisper2. Je vais maintenant énoncer plusieurs phrases de complexité croissante pour évaluer la précision de transcription.
+Premièrement, des mots simples : chat, chien, maison, voiture, ordinateur, téléphone.
+Deuxièmement, des phrases courtes : Il fait beau aujourd'hui. Le café est délicieux. J'aime la musique classique.
+Troisièmement, des phrases plus complexes : L'intelligence artificielle transforme notre manière de travailler et de communiquer dans le monde moderne.
+Quatrièmement, des termes techniques : algorithme, machine learning, GPU RTX 3090, faster-whisper, quantification INT8, latence de transcription.
+Cinquièmement, des nombres et dates : vingt-trois, quarante-sept, mille neuf cent quatre-vingt-quinze, le quinze janvier deux mille vingt-quatre.
+Sixièmement, des mots difficiles : chrysanthème, anticonstitutionnellement, prestidigitateur, kakémono, yaourt.
+Septièmement, une phrase longue et complexe : L'optimisation des performances de transcription vocale nécessite une approche méthodique combinant la sélection appropriée des modèles, l'ajustement des paramètres de traitement, et l'implémentation d'algorithmes de post-traitement pour améliorer la qualité du résultat final.
+Fin du test de validation.
+
+TRANSCRIPTION
+------------------------------
+Bonjour, ceci est un test de validation pour Super Whisperer 2. énoncé plusieurs phrases de complexité croissante pour évaluer la précision de transcription. simple, chat, chien, maison, voiture, ordinateur, téléphone. Deuxièmement, des phrases courtes. aujourd'hui le café délicieux j'aime la musique classique troisièmement des phrases l'intelligence artificielle transforme notre manière de travailler et de communiquer dans le monde moderne. Agorit, Machine Learning, GPU RTX 3090, Faster Whisper l'attente de transcription. Ça commande des nombres des dates 23, 47. de 15 janvier 2024. Sixièmement des mots difficiles. Présentez-vous. de l'élément prestidigitateur Kakemono Iaurt. donc est complexe. L'optimisation des performances de transcription vocale nécessite une approche. combinant la sélection appropriée des modèles, l'ajustement des paramètres de traitement et l'implémentation d'aide. post traitement pour améliorer la qualité du résultat final, fin du test de validation. 
+
+SEGMENTS
+------------------------------
+[1] 21.3s: Bonjour, ceci est un test de validation pour Super Whisperer 2.
+[2] 26.8s: énoncé plusieurs phrases de complexité croissante pour évaluer la précision de transcription.
+[3] 32.3s: simple, chat, chien, maison, voiture, ordinateur, téléphone.
+[4] 32.3s: Deuxièmement, des phrases courtes.
+[5] 37.9s: aujourd'hui le café délicieux j'aime la musique classique troisièmement des phrases
+[6] 43.4s: l'intelligence artificielle transforme notre manière de travailler et de communiquer dans le monde moderne.
+[7] 48.8s: Agorit, Machine Learning, GPU RTX 3090, Faster Whisper
+[8] 54.3s: l'attente de transcription.
+[9] 54.3s: Ça commande des nombres des dates 23, 47.
+[10] 59.8s: de 15 janvier 2024.
+[11] 59.9s: Sixièmement des mots difficiles.
+[12] 59.9s: Présentez-vous.
+[13] 65.4s: de l'élément prestidigitateur Kakemono Iaurt.
+[14] 70.9s: donc est complexe. L'optimisation des performances de transcription vocale nécessite une approche.
+[15] 76.5s: combinant la sélection appropriée des modèles,
+[16] 76.5s: l'ajustement des paramètres de traitement et l'implémentation d'aide.
+[17] 82.1s: post traitement pour améliorer la qualité du résultat final, fin du test de validation.

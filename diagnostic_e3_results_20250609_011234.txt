@@ -1,0 +1,11 @@
+DIAGNOSTIC E3 - STREAMING PIPELINE DEBUG
+Date: 2025-06-09 01:12:34.198015
+
+RÉSULTATS:
+- Test AudioStreamer: SUCCÈS
+- Test Engine V5: ÉCHEC
+- Audio chunks: 9
+- Engine callbacks: 4
+
+CONCLUSION: 🔍 PROBLÈME IDENTIFIÉ: AudioStreamer fonctionne, mais Engine V5 ne traite pas les chunks
+RECOMMANDATION: ➡️ SOLUTION: Vérifier le pipeline StreamingManager → Engine V5

@@ -2,6 +2,8 @@ from src.audio.audio_streamer import AudioStreamer
 import threading
 from typing import Callable
 import numpy as np
+from concurrent.futures import ThreadPoolExecutor
+import queue
 
 class AudioStreamingManager:
     """
@@ -27,6 +29,10 @@ class AudioStreamingManager:
         self.running = False
         self.stream_counter = 0
 
+        # Remplacement threads daemon par ThreadPoolExecutor selon développeur C
+        self.thread_pool = ThreadPoolExecutor(max_workers=4)
+        self.results_queue = queue.Queue()
+
     def start(self):
         """Démarre le streaming audio."""
         self.running = True
@@ -40,17 +46,22 @@ class AudioStreamingManager:
         self.logger.info("AudioStreamingManager arrêté.")
 
     def on_audio_ready(self, audio_chunk: np.ndarray):
-        """
-        Callback appelé par AudioStreamer chaque fois qu'un segment audio est prêt.
-        """
-        if not self.running:
-            return
-
-        duration_s = len(audio_chunk) / 16000
-        model = self.model_selector(duration_s)
-        stream_id = self.stream_counter
+        """Audio callback utilisant ThreadPoolExecutor selon développeur C"""
+        # Soumission au pool au lieu de créer threads manuels
+        future = self.thread_pool.submit(
+            self._safe_transcriber_callback, 
+            audio_chunk, 
+            self.model_selector(len(audio_chunk) / 16000), 
+            self.stream_counter
+        )
         self.stream_counter += 1
-
-        # Lance la transcription dans un thread séparé pour ne pas bloquer la boucle de capture audio.
-        # C'est une décision d'architecture clé pour la réactivité.
-        threading.Thread(target=self.transcriber_callback, args=(audio_chunk, model, stream_id)).start() 
+    
+    def _safe_transcriber_callback(self, audio_chunk: np.ndarray, model: any, stream_id: int):
+        """Wrapper sécurisé pour callbacks avec ThreadPoolExecutor"""
+        try:
+            # Traitement transcription dans pool de threads
+            result = self.transcriber_callback(audio_chunk, model, stream_id)
+            self.results_queue.put(result)
+        except Exception as e:
+            self.logger.error(f"Erreur ThreadPool callback: {e}")
+            # Continuer le streaming même en cas d'erreur 

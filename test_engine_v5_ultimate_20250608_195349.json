@@ -1,0 +1,117 @@
+{
+  "test_info": {
+    "timestamp": "2025-06-08T19:53:49.710944",
+    "duration": 81.38869738578796,
+    "device_id": 4,
+    "bypass_mode": false,
+    "engine": "SuperWhisper2 Engine V5 Phase 3",
+    "gpu": "RTX 3090 24GB"
+  },
+  "metrics": {
+    "similarity": 15.724381625441698,
+    "word_accuracy": 65.0887573964497,
+    "wer": 34.9112426035503,
+    "segments": 19,
+    "total_chars": 1082,
+    "callbacks": 1
+  },
+  "reference_text": "Bonjour, ceci est un test de validation pour SuperWhisper2. Je vais maintenant énoncer plusieurs phrases de complexité croissante pour évaluer la précision de transcription.\nPremièrement, des mots simples : chat, chien, maison, voiture, ordinateur, téléphone.\nDeuxièmement, des phrases courtes : Il fait beau aujourd'hui. Le café est délicieux. J'aime la musique classique.\nTroisièmement, des phrases plus complexes : L'intelligence artificielle transforme notre manière de travailler et de communiquer dans le monde moderne.\nQuatrièmement, des termes techniques : algorithme, machine learning, GPU RTX 3090, faster-whisper, quantification INT8, latence de transcription.\nCinquièmement, des nombres et dates : vingt-trois, quarante-sept, mille neuf cent quatre-vingt-quinze, le quinze janvier deux mille vingt-quatre.\nSixièmement, des mots difficiles : chrysanthème, anticonstitutionnellement, prestidigitateur, kakémono, yaourt.\nSeptièmement, une phrase longue et complexe : L'optimisation des performances de transcription vocale nécessite une approche méthodique combinant la sélection appropriée des modèles, l'ajustement des paramètres de traitement, et l'implémentation d'algorithmes de post-traitement pour améliorer la qualité du résultat final.\nFin du test de validation.",
+  "transcription": "Bonjour, ceci est un test de validation pour Super Whisperer 2. maintenant énoncé plusieurs phrases de complexité croissante pour évaluer la précision de transcription. châche, maison, voiture, ordinateur, téléphone. Deuxièmement, des phrases courtes. Il fait beau. aujourd'hui, le café est délicieux, j'aime la musique classique. délicieux. J'aime la musique classique. Troisièmement des phrases plus complexes. L'intelligence artificielle transforme. de travailler et de communiquer dans le monde moderne. Quatrièmement des termes techniques. Algorithme machine learning. VRTX 3090, faster whisper, quantification INT-8, l'attente... cinquièmement des nombres et dettes, 23, 47, 1995, le 15 janvier 2024, sixièmement des mots difficiles, les anthèmes, anti-constitutionnellement c'est une phrase longue et complexe, l'optimisation de transcription, voca nécessité de l'approche méthodique combinant la section appropriée des modèles. Là, justement, des... et l'implémentation d'algorithmes de post-traitement pour améliorer la qualité du résultat final. fin du test d'évaluation. ",
+  "segments": [
+    {
+      "text": "Bonjour, ceci est un test de validation pour Super Whisperer 2.",
+      "timestamp": 20.47755265235901,
+      "source": "bypass"
+    },
+    {
+      "text": "maintenant énoncé plusieurs phrases de complexité croissante pour évaluer la",
+      "timestamp": 25.895646333694458,
+      "source": "bypass"
+    },
+    {
+      "text": "précision de transcription.",
+      "timestamp": 25.905023336410522,
+      "source": "bypass"
+    },
+    {
+      "text": "châche, maison, voiture, ordinateur, téléphone.",
+      "timestamp": 31.511831998825073,
+      "source": "bypass"
+    },
+    {
+      "text": "Deuxièmement, des phrases courtes. Il fait beau.",
+      "timestamp": 31.519359350204468,
+      "source": "bypass"
+    },
+    {
+      "text": "aujourd'hui, le café est délicieux, j'aime la musique classique.",
+      "timestamp": 34.23277449607849,
+      "source": "engine_v5"
+    },
+    {
+      "text": "délicieux. J'aime la musique classique. Troisièmement des phrases plus complexes. L'intelligence artificielle",
+      "timestamp": 37.08695983886719,
+      "source": "bypass"
+    },
+    {
+      "text": "transforme.",
+      "timestamp": 37.10394811630249,
+      "source": "bypass"
+    },
+    {
+      "text": "de travailler et de communiquer dans le monde moderne.",
+      "timestamp": 42.73812913894653,
+      "source": "bypass"
+    },
+    {
+      "text": "Quatrièmement des termes techniques.",
+      "timestamp": 42.75613045692444,
+      "source": "bypass"
+    },
+    {
+      "text": "Algorithme machine learning.",
+      "timestamp": 42.77439856529236,
+      "source": "bypass"
+    },
+    {
+      "text": "VRTX 3090, faster whisper, quantification INT-8, l'attente...",
+      "timestamp": 48.23649048805237,
+      "source": "bypass"
+    },
+    {
+      "text": "cinquièmement des nombres et dettes, 23, 47, 1995, le 15 janvier",
+      "timestamp": 53.71267127990723,
+      "source": "bypass"
+    },
+    {
+      "text": "2024, sixièmement des mots difficiles, les anthèmes, anti-constitutionnellement",
+      "timestamp": 59.288021087646484,
+      "source": "bypass"
+    },
+    {
+      "text": "c'est une phrase longue et complexe, l'optimisation",
+      "timestamp": 64.81005191802979,
+      "source": "bypass"
+    },
+    {
+      "text": "de transcription, voca nécessité de l'approche méthodique combinant la section appropriée des",
+      "timestamp": 70.33710026741028,
+      "source": "bypass"
+    },
+    {
+      "text": "modèles. Là, justement, des...",
+      "timestamp": 70.36121845245361,
+      "source": "bypass"
+    },
+    {
+      "text": "et l'implémentation d'algorithmes de post-traitement pour améliorer la qualité du résultat final.",
+      "timestamp": 75.91849660873413,
+      "source": "bypass"
+    },
+    {
+      "text": "fin du test d'évaluation.",
+      "timestamp": 81.38869738578796,
+      "source": "bypass"
+    }
+  ]
+}

@@ -1,0 +1,107 @@
+{
+  "test_info": {
+    "timestamp": "2025-06-09T00:56:51.886416",
+    "duration": 99.27659249305725,
+    "device_id": 4,
+    "bypass_mode": false,
+    "engine": "SuperWhisper2 Engine V5 Phase 3",
+    "gpu": "RTX 3090 24GB"
+  },
+  "metrics": {
+    "similarity": 11.033347056401812,
+    "word_accuracy": 2.958579881656803,
+    "wer": 97.0414201183432,
+    "segments": 17,
+    "total_chars": 1347,
+    "callbacks": 0
+  },
+  "reference_text": "Bonjour, ceci est un test de validation pour SuperWhisper2. Je vais maintenant énoncer plusieurs phrases de complexité croissante pour évaluer la précision de transcription.\nPremièrement, des mots simples : chat, chien, maison, voiture, ordinateur, téléphone.\nDeuxièmement, des phrases courtes : Il fait beau aujourd'hui. Le café est délicieux. J'aime la musique classique.\nTroisièmement, des phrases plus complexes : L'intelligence artificielle transforme notre manière de travailler et de communiquer dans le monde moderne.\nQuatrièmement, des termes techniques : algorithme, machine learning, GPU RTX 3090, faster-whisper, quantification INT8, latence de transcription.\nCinquièmement, des nombres et dates : vingt-trois, quarante-sept, mille neuf cent quatre-vingt-quinze, le quinze janvier deux mille vingt-quatre.\nSixièmement, des mots difficiles : chrysanthème, anticonstitutionnellement, prestidigitateur, kakémono, yaourt.\nSeptièmement, une phrase longue et complexe : L'optimisation des performances de transcription vocale nécessite une approche méthodique combinant la sélection appropriée des modèles, l'ajustement des paramètres de traitement, et l'implémentation d'algorithmes de post-traitement pour améliorer la qualité du résultat final.\nFin du test de validation.",
+  "transcription": "Bonjour. Ceci est un test de validation pour Super Whisper 2. annoncer plusieurs phrases de complexité croissante pour évaluer la précision de transcription. Premièrement des mots simples, chien, chien, maison, voiture, ordinateur, téléphone. Deuxièmement des phrases courtes, il te fait beau aujourd'hui, le café est délicieux, j'aime l'amour. 3. Des phrases plus complexes. L'intelligence artificielle transforme notre manière. et de communiquer dans le monde moderne qu'attraivement des termes techniques algoritmes. Learning, GPU RTX 3090, Faster Whisper La tendance de transcription, 5e, 5e menthe 1, 2, 3, 4, 5, 6, 7, 8, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9 C'est précisément des mots difficiles, présentement et constitutionnellement précis. C'était moi une phrase longue et complexe. L'optimisation des performances de transcription vocale nécessite une... méthodique, combinant la sélection appropriée des modèles à juste point de vue. de traitement et l'implémentation de l'algorithme de poste traitement premier. C'est du Rétaginal, fin du théâtre d'hérilation. ",
+  "segments": [
+    {
+      "text": "Bonjour.",
+      "timestamp": 15.863415479660034,
+      "source": "bypass"
+    },
+    {
+      "text": "Ceci est un test de validation pour Super Whisper 2.",
+      "timestamp": 21.340028047561646,
+      "source": "bypass"
+    },
+    {
+      "text": "annoncer plusieurs phrases de complexité croissante pour évaluer la précision de transcription.",
+      "timestamp": 26.783077001571655,
+      "source": "bypass"
+    },
+    {
+      "text": "Premièrement des mots simples, chien, chien, maison, voiture, ordinateur, téléphone.",
+      "timestamp": 32.333465337753296,
+      "source": "bypass"
+    },
+    {
+      "text": "Deuxièmement des phrases courtes, il te fait beau aujourd'hui, le café est délicieux, j'aime l'amour.",
+      "timestamp": 37.83285713195801,
+      "source": "bypass"
+    },
+    {
+      "text": "3. Des phrases plus complexes.",
+      "timestamp": 43.35713505744934,
+      "source": "bypass"
+    },
+    {
+      "text": "L'intelligence artificielle transforme notre manière.",
+      "timestamp": 43.36913466453552,
+      "source": "bypass"
+    },
+    {
+      "text": "et de communiquer dans le monde moderne qu'attraivement des termes techniques algoritmes.",
+      "timestamp": 48.94440793991089,
+      "source": "bypass"
+    },
+    {
+      "text": "Learning, GPU RTX 3090, Faster Whisper",
+      "timestamp": 54.47758102416992,
+      "source": "bypass"
+    },
+    {
+      "text": "La tendance de transcription, 5e, 5e menthe",
+      "timestamp": 59.924680948257446,
+      "source": "bypass"
+    },
+    {
+      "text": "1, 2, 3, 4, 5, 6, 7, 8, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9",
+      "timestamp": 66.4288923740387,
+      "source": "bypass"
+    },
+    {
+      "text": "C'est précisément des mots difficiles, présentement et constitutionnellement précis.",
+      "timestamp": 71.92329621315002,
+      "source": "bypass"
+    },
+    {
+      "text": "C'était moi une phrase longue et complexe.",
+      "timestamp": 77.29769682884216,
+      "source": "bypass"
+    },
+    {
+      "text": "L'optimisation des performances de transcription vocale nécessite une...",
+      "timestamp": 82.72286248207092,
+      "source": "bypass"
+    },
+    {
+      "text": "méthodique, combinant la sélection appropriée des modèles à juste point de vue.",
+      "timestamp": 88.13917422294617,
+      "source": "bypass"
+    },
+    {
+      "text": "de traitement et l'implémentation de l'algorithme de poste traitement premier.",
+      "timestamp": 93.72731423377991,
+      "source": "bypass"
+    },
+    {
+      "text": "C'est du Rétaginal, fin du théâtre d'hérilation.",
+      "timestamp": 99.27659249305725,
+      "source": "bypass"
+    }
+  ]
+}

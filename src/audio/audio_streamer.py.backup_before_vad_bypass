@@ -23,41 +23,70 @@ from scipy import signal
 class VoiceActivityDetector:
     """
     Détecteur d'activité vocale pour éliminer les hallucinations Whisper
-    PATCH DÉVELOPPEUR C: WebRTC-VAD avec format audio correct
     """
-    def __init__(self, sample_rate=16000, aggressiveness=1):
+    def __init__(self, sample_rate=16000, aggressiveness=1):  # Moins agressif: 2→1
         self.sample_rate = sample_rate
-        # PATCH DÉVELOPPEUR C: Réintégrer WebRTC-VAD avec format correct
-        try:
-            import webrtcvad
-            self.vad = webrtcvad.Vad()
-            self.vad.set_mode(aggressiveness)  # Mode permissif
-            self.webrtc_available = True
-        except ImportError:
-            self.vad = None
-            self.webrtc_available = False
+        self.vad = webrtcvad.Vad()
+        self.vad.set_mode(aggressiveness)  # 0-3, 3 = plus agressif
         
-        self.min_energy_threshold = 0.0001  # Fallback
+        # Seuils de détection ASSOUPLIS pour E3
+        self.min_voice_ratio = 0.1  # 10% du chunk (vs 30% trop strict)
+        self.min_energy_threshold = 0.0005  # Seuil plus bas (vs 0.001 trop haut)
         
-    def is_speech(self, pcm_bytes: bytes, sample_rate: int) -> bool:
-        """
-        Interface directe WebRTC-VAD selon patch développeur C
-        Args:
-            pcm_bytes: Audio en format int16 PCM bytes
-            sample_rate: Fréquence d'échantillonnage
-        """
-        if self.webrtc_available:
-            return self.vad.is_speech(pcm_bytes, sample_rate)
-        else:
-            # Fallback énergie simple si WebRTC indisponible
-            return True  # Mode très permissif
-            
     def has_voice_activity(self, audio_chunk: np.ndarray) -> bool:
         """
-        Méthode legacy pour compatibilité
+        Détermine si le chunk audio contient de la vraie parole
         """
+        # 1. Vérifier énergie minimum
         energy = np.mean(audio_chunk ** 2)
-        return energy >= self.min_energy_threshold
+        if energy < self.min_energy_threshold:
+            return False
+            
+        # 2. WebRTC VAD sur segments de 30ms
+        frame_length = int(self.sample_rate * 0.03)  # 30ms frames pour WebRTC VAD
+        voice_frames = 0
+        total_frames = 0
+        
+        # Convertir float32 → int16 pour WebRTC VAD  
+        audio_int16 = (audio_chunk * 32767).astype(np.int16)
+        
+        for i in range(0, len(audio_int16) - frame_length, frame_length):
+            frame = audio_int16[i:i + frame_length]
+            
+            if len(frame) == frame_length:
+                # WebRTC VAD nécessite bytes
+                frame_bytes = struct.pack(f'{len(frame)}h', *frame)
+                
+                try:
+                    if self.vad.is_speech(frame_bytes, self.sample_rate):
+                        voice_frames += 1
+                    total_frames += 1
+                except:
+                    # Fallback si WebRTC VAD échoue
+                    continue
+        
+        if total_frames == 0:
+            return False
+            
+        voice_ratio = voice_frames / total_frames
+        return voice_ratio >= self.min_voice_ratio
+    
+    def filter_noise(self, audio_chunk: np.ndarray) -> np.ndarray:
+        """
+        Filtre simple pour réduire le bruit de fond
+        """
+        # Filtre passe-haut pour éliminer les basses fréquences (bruit électronique)
+        nyquist = self.sample_rate / 2
+        high_cutoff = 300 / nyquist  # 300Hz
+        b, a = signal.butter(4, high_cutoff, btype='high')
+        filtered = signal.filtfilt(b, a, audio_chunk)
+        
+        # Normalisation douce
+        max_val = np.max(np.abs(filtered))
+        if max_val > 0:
+            filtered = filtered / max_val * 0.8
+            
+        return filtered.astype(np.float32)
 
 
 class HallucinationFilter:
@@ -137,13 +166,6 @@ class AudioStreamer:
             'chunks_filtered_noise': 0,
             'hallucinations_detected': 0
         }
-        
-        # Calibration gain automatique selon développeur C
-        self.auto_gain_enabled = True
-        self.target_rms = 0.05  # RMS cible recommandée par développeur C
-        self.gain_factor = 1.0  # Facteur de gain adaptatif
-        self.rms_history = []
-        self.calibration_complete = False
 
     def _resolve_device_id(self, name_part: str) -> int:
         """
@@ -191,36 +213,8 @@ class AudioStreamer:
             while self.running:
                 time.sleep(0.1) # La boucle est principalement pilotée par le callback
 
-    def _auto_calibrate_gain(self, rms: float):
-        """
-        Calibration automatique gain selon développeur C
-        Objectif: RMS cible 0.05-0.1 pour optimiser ratio chunks
-        """
-        if not self.auto_gain_enabled:
-            return 1.0
-            
-        # Collecter historique RMS pour stabilisation
-        self.rms_history.append(rms)
-        if len(self.rms_history) > 10:
-            self.rms_history.pop(0)
-            
-        # Calibration après 5 échantillons
-        if len(self.rms_history) >= 5 and not self.calibration_complete:
-            avg_rms = np.mean(self.rms_history)
-            
-            if avg_rms < 0.02:  # Signal trop faible selon développeur C
-                self.gain_factor = min(self.target_rms / avg_rms, 3.0)  # Limiter gain max
-                self.logger.info(f"🔧 Auto-gain activé: {self.gain_factor:.2f}x (RMS {avg_rms:.4f} → {self.target_rms:.4f})")
-                self.calibration_complete = True
-                
-        return self.gain_factor
-        
     def _audio_callback(self, indata, frames, time_info, status):
-        """
-        Callback de sounddevice, appelé avec de nouvelles données audio.
-        PATCH DÉVELOPPEUR C: Correction format audio float32 → int16 pour WebRTC-VAD
-        + Calibration gain automatique
-        """
+        """Callback de sounddevice, appelé avec de nouvelles données audio."""
         if status:
             self.logger.warning(f"AudioStreamer status: {status}")
             
@@ -228,34 +222,24 @@ class AudioStreamer:
             return
             
         try:
-            # Conversion mono + float64 → float32 
-            audio_chunk = indata[:, 0].astype(np.float32)
-            
-            # Log RMS pour diagnostic selon recommandation développeur C
-            rms = np.sqrt(np.mean(audio_chunk ** 2))
-            
-            # Auto-calibration gain selon développeur C
-            gain = self._auto_calibrate_gain(rms)
-            if gain > 1.0:
-                audio_chunk = audio_chunk * gain
-                rms = rms * gain  # Mettre à jour RMS après gain
-            
+            audio_chunk = indata[:, 0]
             self.stats['chunks_processed'] += 1
             
-            # PATCH DÉVELOPPEUR C: VAD BYPASS COMPLET pour déblocage immédiat
-            # WebRTC-VAD incompatible avec format Rode NT-USB -> bypass total
-            self.logger.debug(f"🎤 BYPASS VAD - RMS={rms:.6f} (gain={gain:.2f}x)")
-            
-            # Seuil énergie ultra-permissif pour permettre le streaming
-            if rms < 0.0001:  # Seuil quasi-inexistant
+            # 1. Vérifier activité vocale avec VAD (E3: mode permissif)
+            if not self.vad.has_voice_activity(audio_chunk):
                 self.stats['chunks_filtered_noise'] += 1
-                self.logger.debug(f"🔇 Énergie trop faible: {rms:.6f}")
+                # E3 DEBUG: Log les détails du filtrage pour diagnostic
+                energy = np.mean(audio_chunk ** 2)
+                self.logger.debug(f"🔇 Chunk filtré - Énergie: {energy:.6f}, Seuil: {self.vad.min_energy_threshold:.6f}")
                 return
                 
             self.stats['chunks_with_voice'] += 1
             
-            # 2. Transmettre à l'engine directement (plus de filtrage nécessaire)
-            self.callback(audio_chunk)
+            # 2. Filtrer le bruit
+            filtered_audio = self.vad.filter_noise(audio_chunk)
+            
+            # 3. Transmettre à l'engine avec callback wrappé
+            self._safe_callback(filtered_audio)
             
         except Exception as e:
             self.logger.error(f"Erreur dans le callback AudioStreamer: {e}")

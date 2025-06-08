@@ -10,7 +10,7 @@ import time
 import traceback
 
 # Force utilisation GPU RTX 3090
-os.environ['CUDA_VISIBLE_DEVICES'] = '0'  # Carte primaire
+os.environ['CUDA_VISIBLE_DEVICES'] = '1'  # RTX 3090 sur GPU 1
 os.environ['CUDA_DEVICE_ORDER'] = 'PCI_BUS_ID'
 
 def transcribe_audio():
@@ -51,8 +51,8 @@ def transcribe_audio():
         try:
             model = WhisperModel(
                 "medium", 
-                device="cuda", 
-                compute_type="float16"
+                device="cpu", 
+                compute_type="int8"
             )
         except Exception as e:
             print(f"ERROR: Echec chargement modele: {e}")

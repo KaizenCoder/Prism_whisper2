@@ -1,0 +1,11 @@
+DIAGNOSTIC E3 - STREAMING PIPELINE DEBUG
+Date: 2025-06-09 00:52:37.348090
+
+RÉSULTATS:
+- Test AudioStreamer: ÉCHEC
+- Test Engine V5: ÉCHEC
+- Audio chunks: 0
+- Engine callbacks: 0
+
+CONCLUSION: 🔍 PROBLÈME IDENTIFIÉ: AudioStreamer ne capture pas l'audio correctement
+RECOMMANDATION: ➡️ SOLUTION: Revoir la configuration device E1

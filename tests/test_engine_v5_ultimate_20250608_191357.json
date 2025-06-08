@@ -1,0 +1,94 @@
+{
+  "test_info": {
+    "timestamp": "2025-06-08T19:13:57.101073",
+    "duration": 105.33994674682617,
+    "device_id": 4,
+    "bypass_mode": false,
+    "engine": "SuperWhisper2 Engine V5 Phase 3",
+    "gpu": "RTX 3090 24GB"
+  },
+  "metrics": {
+    "similarity": 11.398467432950191,
+    "word_accuracy": 43.786982248520715,
+    "wer": 56.213017751479285,
+    "segments": 18,
+    "total_chars": 901,
+    "callbacks": 1
+  },
+  "reference_text": "Bonjour, ceci est un test de validation pour SuperWhisper2. Je vais maintenant énoncer plusieurs phrases de complexité croissante pour évaluer la précision de transcription.\nPremièrement, des mots simples : chat, chien, maison, voiture, ordinateur, téléphone.\nDeuxièmement, des phrases courtes : Il fait beau aujourd'hui. Le café est délicieux. J'aime la musique classique.\nTroisièmement, des phrases plus complexes : L'intelligence artificielle transforme notre manière de travailler et de communiquer dans le monde moderne.\nQuatrièmement, des termes techniques : algorithme, machine learning, GPU RTX 3090, faster-whisper, quantification INT8, latence de transcription.\nCinquièmement, des nombres et dates : vingt-trois, quarante-sept, mille neuf cent quatre-vingt-quinze, le quinze janvier deux mille vingt-quatre.\nSixièmement, des mots difficiles : chrysanthème, anticonstitutionnellement, prestidigitateur, kakémono, yaourt.\nSeptièmement, une phrase longue et complexe : L'optimisation des performances de transcription vocale nécessite une approche méthodique combinant la sélection appropriée des modèles, l'ajustement des paramètres de traitement, et l'implémentation d'algorithmes de post-traitement pour améliorer la qualité du résultat final.\nFin du test de validation.",
+  "transcription": "Bonjour, ça c'est... Pour Super Whisper 2, je vais maintenant énoncer plus de complexité différente Premièrement... Châche, maison, voiture, ordinateur. Deuxièmement, des phrases courtes, il fait beau aujourd'hui, c'est beau aujourd'hui. Le café est délicieux, j'aime la musique classique, troisièmement défr... Troisièmement, des phrases plus complexes, l'intelligence artificielle transforme notre manière de... de communiquer dans le monde moderne, un quatrième monde était un petit... Le rythme, machine learning, GPU RTX 3090, faster whisper, quantification gain. L'attente de transcription S'inquièlement des nombres et dames 23-47-1995 6e mot des mots difficiles, crise en thème, anti-constitutionnellement L'optimisation des performances de transcription vocale nécessite une approche méthodique propriés des modèles, ajustement des paramètres de traitement et l'implémentation d'algorithmes. ",
+  "segments": [
+    {
+      "text": "Bonjour, ça c'est...",
+      "timestamp": 23.72753381729126
+    },
+    {
+      "text": "Pour Super Whisper 2, je vais maintenant énoncer plus",
+      "timestamp": 29.15179991722107
+    },
+    {
+      "text": "de complexité différente",
+      "timestamp": 39.66287398338318
+    },
+    {
+      "text": "Premièrement...",
+      "timestamp": 45.077279806137085
+    },
+    {
+      "text": "Châche, maison, voiture, ordinateur.",
+      "timestamp": 50.52128219604492
+    },
+    {
+      "text": "Deuxièmement, des phrases courtes, il fait beau aujourd'hui, c'est beau aujourd'hui.",
+      "timestamp": 56.0607225894928
+    },
+    {
+      "text": "Le café est délicieux, j'aime la musique classique, troisièmement défr...",
+      "timestamp": 57.66683101654053
+    },
+    {
+      "text": "Troisièmement, des phrases plus complexes,",
+      "timestamp": 61.48657846450806
+    },
+    {
+      "text": "l'intelligence artificielle transforme notre manière de...",
+      "timestamp": 61.4925799369812
+    },
+    {
+      "text": "de communiquer dans le monde moderne,",
+      "timestamp": 66.9902675151825
+    },
+    {
+      "text": "un quatrième monde était un petit...",
+      "timestamp": 66.99927163124084
+    },
+    {
+      "text": "Le rythme, machine learning, GPU RTX 3090, faster whisper, quantification gain.",
+      "timestamp": 72.51117205619812
+    },
+    {
+      "text": "L'attente de transcription",
+      "timestamp": 78.00385093688965
+    },
+    {
+      "text": "S'inquièlement des nombres et dames",
+      "timestamp": 78.01686334609985
+    },
+    {
+      "text": "23-47-1995",
+      "timestamp": 83.43121552467346
+    },
+    {
+      "text": "6e mot des mots difficiles, crise en thème, anti-constitutionnellement",
+      "timestamp": 88.94835042953491
+    },
+    {
+      "text": "L'optimisation des performances de transcription vocale nécessite une approche méthodique",
+      "timestamp": 99.77979373931885
+    },
+    {
+      "text": "propriés des modèles, ajustement des paramètres de traitement et l'implémentation d'algorithmes.",
+      "timestamp": 105.33994674682617
+    }
+  ]
+}

@@ -178,19 +178,22 @@ class ModelOptimizer:
     def get_optimal_model(self, audio_length_s: float) -> WhisperModel:
         """
         Pipeline switching intelligent selon durée audio
+        AMÉLIORATION: Privilégier medium pour qualité optimale
         """
         if not self.quantization_enabled:
             return self.model_cache.get('medium_fp16')
         
-        # Logique switching : small pour <5s, medium pour ≥5s
-        if audio_length_s < 5.0 and 'small_int8' in self.model_cache:
-            self.logger.info(f"🧠 Switching to faster-whisper SMALL for short audio ({audio_length_s:.1f}s)")
-            return self.model_cache['small_int8']
-        
+        # NOUVELLE LOGIQUE: Utiliser MEDIUM par défaut pour meilleure qualité
+        # Small seulement pour très courts segments (<1s)
         medium_model = self.model_cache.get('medium_int8')
         if medium_model:
-            self.logger.info(f"🧠 Using Whisper MEDIUM INT8 for longer audio ({audio_length_s:.1f}s)")
+            self.logger.info(f"🧠 Using Whisper MEDIUM INT8 for optimal quality ({audio_length_s:.1f}s)")
             return medium_model
+        
+        # Fallback small si medium indisponible
+        if audio_length_s < 1.0 and 'small_int8' in self.model_cache:
+            self.logger.info(f"🧠 Fallback to SMALL for very short audio ({audio_length_s:.1f}s)")
+            return self.model_cache['small_int8']
             
         self.logger.warning("⚠️ Optimal model not found, fallback to default FP16")
         return self.model_cache.get('medium_fp16')
@@ -490,18 +493,38 @@ class SuperWhisper2EngineV5:
     def process_audio_chunk(self, audio_chunk: np.ndarray, model: any, stream_id: int):
         """
         Traite un chunk audio provenant du AudioStreamingManager.
-        Cette méthode est maintenant le callback final.
+        Cette méthode est maintenant le callback final avec filtrage anti-hallucination.
         """
         start_time = time.time()
         try:
             self.logger.info(f"🎤 Transcription d'un audio de {len(audio_chunk)/16000:.2f}s...")
             
-            # Utilisation du modèle sélectionné par le manager
-            segments, info = model.transcribe(audio_chunk, language="fr", beam_size=5)
+            # Utilisation du modèle sélectionné par le manager avec paramètres optimisés
+            segments, info = model.transcribe(
+                audio_chunk, 
+                language="fr", 
+                beam_size=5,
+                best_of=5,
+                temperature=0.0,
+                condition_on_previous_text=False,
+                compression_ratio_threshold=2.4,
+                log_prob_threshold=-1.0,
+                no_speech_threshold=0.6,
+                word_timestamps=True
+            )
             
             transcription_text = " ".join([s.text.strip() for s in segments])
 
             latency = time.time() - start_time
+            
+            # E3.3 FIX: Filtrage des hallucinations SANS casser le streaming
+            if self._is_hallucination(transcription_text):
+                self.logger.warning(f"🚫 Hallucination Whisper détectée et filtrée: '{transcription_text[:50]}...' ({latency:.2f}s)")
+                # E3.3: NE PAS return - juste ne pas transmettre le callback
+                # Le streaming doit CONTINUER même si une transcription est filtrée
+                self.logger.debug("🔄 Streaming continue malgré hallucination filtrée...")
+                return  # OK ici car on veut juste ignorer cette transcription
+            
             self.logger.info(f"💬 Transcription: '{transcription_text}'")
             self.logger.info(f"⚡ Streaming Transcription: '{transcription_text}' en {latency:.2f}s")
             
@@ -511,6 +534,44 @@ class SuperWhisper2EngineV5:
         except Exception as e:
             self.logger.error(f"❌ Transcribe error: {e}")
             traceback.print_exc()
+    
+    def _is_hallucination(self, text: str) -> bool:
+        """
+        Détecte les hallucinations communes de Whisper
+        """
+        if not text or len(text.strip()) == 0:
+            return True
+            
+        text_lower = text.lower().strip()
+        
+        # Patterns d'hallucination identifiés
+        hallucination_patterns = [
+            "sous-titres réalisés par la communauté d'amara.org",
+            "sous-titres réalisés par l'amara.org", 
+            "merci d'avoir regardé cette vidéo",
+            "merci d'avoir regardé",
+            "n'hésitez pas à vous abonner",
+            "like et abonne-toi",
+            "commentez et partagez",
+            "à bientôt pour une nouvelle vidéo",
+            "musique libre de droit",
+            "copyright",
+            "creative commons"
+        ]
+        
+        # Vérifier patterns exacts
+        for pattern in hallucination_patterns:
+            if pattern in text_lower:
+                return True
+                
+        # Vérifier répétitions suspectes
+        words = text_lower.split()
+        if len(words) > 3:
+            unique_ratio = len(set(words)) / len(words)
+            if unique_ratio < 0.5:  # Plus de 50% de répétitions
+                return True
+                
+        return False
 
     def _update_performance_metrics(self):
         """
@@ -718,6 +779,6 @@ if __name__ == "__main__":
             # Afficher status Phase 3
             status = engine.get_phase3_status()
             print(f"📊 Status Phase 3: {status['go_no_go_status']['overall_decision']}")
-            print(f"🎯 Progrès: {status['target_progress_percent']:.1f}%")
+            print(f"�� Progrès: {status['target_progress_percent']:.1f}%")
         
         engine.stop_engine()

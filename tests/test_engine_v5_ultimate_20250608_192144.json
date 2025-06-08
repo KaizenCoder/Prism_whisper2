@@ -1,0 +1,112 @@
+{
+  "test_info": {
+    "timestamp": "2025-06-08T19:21:44.626412",
+    "duration": 89.93795490264893,
+    "device_id": 4,
+    "bypass_mode": false,
+    "engine": "SuperWhisper2 Engine V5 Phase 3",
+    "gpu": "RTX 3090 24GB"
+  },
+  "metrics": {
+    "similarity": 51.967799642218246,
+    "word_accuracy": 63.90532544378698,
+    "wer": 36.09467455621302,
+    "segments": 18,
+    "total_chars": 1052,
+    "callbacks": 0
+  },
+  "reference_text": "Bonjour, ceci est un test de validation pour SuperWhisper2. Je vais maintenant énoncer plusieurs phrases de complexité croissante pour évaluer la précision de transcription.\nPremièrement, des mots simples : chat, chien, maison, voiture, ordinateur, téléphone.\nDeuxièmement, des phrases courtes : Il fait beau aujourd'hui. Le café est délicieux. J'aime la musique classique.\nTroisièmement, des phrases plus complexes : L'intelligence artificielle transforme notre manière de travailler et de communiquer dans le monde moderne.\nQuatrièmement, des termes techniques : algorithme, machine learning, GPU RTX 3090, faster-whisper, quantification INT8, latence de transcription.\nCinquièmement, des nombres et dates : vingt-trois, quarante-sept, mille neuf cent quatre-vingt-quinze, le quinze janvier deux mille vingt-quatre.\nSixièmement, des mots difficiles : chrysanthème, anticonstitutionnellement, prestidigitateur, kakémono, yaourt.\nSeptièmement, une phrase longue et complexe : L'optimisation des performances de transcription vocale nécessite une approche méthodique combinant la sélection appropriée des modèles, l'ajustement des paramètres de traitement, et l'implémentation d'algorithmes de post-traitement pour améliorer la qualité du résultat final.\nFin du test de validation.",
+  "transcription": "Bonjour. Ceci est un test d'avalidation pour Super Whisper 2, je vais maintenant énoncer. plusieurs phases de complexité croissante pour évaluer la précision de temps. Premièrement, des mots simples, châche, maison, voiture, ordinateur, téléphone. Deuxièmement, des phrases courtes. Il fait beau aujourd'hui. Le café est délicieux. J'aime la musique classique. Deuxièmement, des phrases... L'intelligence artificielle transforme notre manière de travailler et de communiquer dans le monde moderne. 4ème mot des termes techniques. Algorithme, machine learning, GPU RTX 3090 FASTER WISPER, quantification INT8, latence de transcription. des nombres et dates, 23, 47, 1995, le 15... 6e des mots difficiles, présentemment, anti-constitutionnellement, précis digitaux. C'est une phrase donc complexe. L'optimisation des performances. voca nécessite une approche méthodique combinant la sélection appropriée des modèles justement des paramètres agorhythme de postes de traitement pour l'amélioration de la qualité de l'état final. fin du test de validation. ",
+  "segments": [
+    {
+      "text": "Bonjour.",
+      "timestamp": 18.03362464904785,
+      "source": "bypass"
+    },
+    {
+      "text": "Ceci est un test d'avalidation pour Super Whisper 2, je vais maintenant énoncer.",
+      "timestamp": 23.55510926246643,
+      "source": "bypass"
+    },
+    {
+      "text": "plusieurs phases de complexité croissante pour évaluer la précision de temps.",
+      "timestamp": 29.055376052856445,
+      "source": "bypass"
+    },
+    {
+      "text": "Premièrement, des mots simples, châche, maison, voiture, ordinateur, téléphone.",
+      "timestamp": 34.51209878921509,
+      "source": "bypass"
+    },
+    {
+      "text": "Deuxièmement, des phrases courtes. Il fait beau aujourd'hui. Le café est délicieux. J'aime la musique classique.",
+      "timestamp": 40.17683291435242,
+      "source": "bypass"
+    },
+    {
+      "text": "Deuxièmement, des phrases...",
+      "timestamp": 40.188838481903076,
+      "source": "bypass"
+    },
+    {
+      "text": "L'intelligence artificielle transforme notre manière de travailler et de communiquer",
+      "timestamp": 45.748900413513184,
+      "source": "bypass"
+    },
+    {
+      "text": "dans le monde moderne.",
+      "timestamp": 45.762900590896606,
+      "source": "bypass"
+    },
+    {
+      "text": "4ème mot des termes techniques. Algorithme, machine learning, GPU RTX 3090",
+      "timestamp": 51.303486347198486,
+      "source": "bypass"
+    },
+    {
+      "text": "FASTER WISPER, quantification INT8, latence de transcription.",
+      "timestamp": 56.814629554748535,
+      "source": "bypass"
+    },
+    {
+      "text": "des nombres et dates, 23, 47, 1995, le 15...",
+      "timestamp": 62.30990815162659,
+      "source": "bypass"
+    },
+    {
+      "text": "6e des mots difficiles, présentemment, anti-constitutionnellement, précis digitaux.",
+      "timestamp": 67.86700224876404,
+      "source": "bypass"
+    },
+    {
+      "text": "C'est une phrase donc complexe.",
+      "timestamp": 73.32579803466797,
+      "source": "bypass"
+    },
+    {
+      "text": "L'optimisation des performances.",
+      "timestamp": 73.3412823677063,
+      "source": "bypass"
+    },
+    {
+      "text": "voca nécessite une approche méthodique combinant la sélection appropriée des",
+      "timestamp": 79.02541160583496,
+      "source": "bypass"
+    },
+    {
+      "text": "modèles justement des paramètres",
+      "timestamp": 79.04344487190247,
+      "source": "bypass"
+    },
+    {
+      "text": "agorhythme de postes de traitement pour l'amélioration de la qualité de l'état final.",
+      "timestamp": 84.50361943244934,
+      "source": "bypass"
+    },
+    {
+      "text": "fin du test de validation.",
+      "timestamp": 89.93795490264893,
+      "source": "bypass"
+    }
+  ]
+}

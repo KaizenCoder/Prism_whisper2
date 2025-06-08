@@ -1,0 +1,107 @@
+{
+  "test_info": {
+    "timestamp": "2025-06-08T19:27:36.943934",
+    "duration": 82.05952525138855,
+    "device_id": 4,
+    "bypass_mode": false,
+    "engine": "SuperWhisper2 Engine V5 Phase 3",
+    "gpu": "RTX 3090 24GB"
+  },
+  "metrics": {
+    "similarity": 30.635573845450388,
+    "word_accuracy": 67.45562130177515,
+    "wer": 32.544378698224854,
+    "segments": 17,
+    "total_chars": 990,
+    "callbacks": 0
+  },
+  "reference_text": "Bonjour, ceci est un test de validation pour SuperWhisper2. Je vais maintenant énoncer plusieurs phrases de complexité croissante pour évaluer la précision de transcription.\nPremièrement, des mots simples : chat, chien, maison, voiture, ordinateur, téléphone.\nDeuxièmement, des phrases courtes : Il fait beau aujourd'hui. Le café est délicieux. J'aime la musique classique.\nTroisièmement, des phrases plus complexes : L'intelligence artificielle transforme notre manière de travailler et de communiquer dans le monde moderne.\nQuatrièmement, des termes techniques : algorithme, machine learning, GPU RTX 3090, faster-whisper, quantification INT8, latence de transcription.\nCinquièmement, des nombres et dates : vingt-trois, quarante-sept, mille neuf cent quatre-vingt-quinze, le quinze janvier deux mille vingt-quatre.\nSixièmement, des mots difficiles : chrysanthème, anticonstitutionnellement, prestidigitateur, kakémono, yaourt.\nSeptièmement, une phrase longue et complexe : L'optimisation des performances de transcription vocale nécessite une approche méthodique combinant la sélection appropriée des modèles, l'ajustement des paramètres de traitement, et l'implémentation d'algorithmes de post-traitement pour améliorer la qualité du résultat final.\nFin du test de validation.",
+  "transcription": "Bonjour, ceci est un test de validation pour Super Whisperer 2. énoncé plusieurs phrases de complexité croissante pour évaluer la précision de transcription. simple, chat, chien, maison, voiture, ordinateur, téléphone. Deuxièmement, des phrases courtes. aujourd'hui le café délicieux j'aime la musique classique troisièmement des phrases l'intelligence artificielle transforme notre manière de travailler et de communiquer dans le monde moderne. Agorit, Machine Learning, GPU RTX 3090, Faster Whisper l'attente de transcription. Ça commande des nombres des dates 23, 47. de 15 janvier 2024. Sixièmement des mots difficiles. Présentez-vous. de l'élément prestidigitateur Kakemono Iaurt. donc est complexe. L'optimisation des performances de transcription vocale nécessite une approche. combinant la sélection appropriée des modèles, l'ajustement des paramètres de traitement et l'implémentation d'aide. post traitement pour améliorer la qualité du résultat final, fin du test de validation. ",
+  "segments": [
+    {
+      "text": "Bonjour, ceci est un test de validation pour Super Whisperer 2.",
+      "timestamp": 21.275830268859863,
+      "source": "bypass"
+    },
+    {
+      "text": "énoncé plusieurs phrases de complexité croissante pour évaluer la précision de transcription.",
+      "timestamp": 26.804076671600342,
+      "source": "bypass"
+    },
+    {
+      "text": "simple, chat, chien, maison, voiture, ordinateur, téléphone.",
+      "timestamp": 32.329253911972046,
+      "source": "bypass"
+    },
+    {
+      "text": "Deuxièmement, des phrases courtes.",
+      "timestamp": 32.34125256538391,
+      "source": "bypass"
+    },
+    {
+      "text": "aujourd'hui le café délicieux j'aime la musique classique troisièmement des phrases",
+      "timestamp": 37.859694480895996,
+      "source": "bypass"
+    },
+    {
+      "text": "l'intelligence artificielle transforme notre manière de travailler et de communiquer dans le monde moderne.",
+      "timestamp": 43.35289978981018,
+      "source": "bypass"
+    },
+    {
+      "text": "Agorit, Machine Learning, GPU RTX 3090, Faster Whisper",
+      "timestamp": 48.83214092254639,
+      "source": "bypass"
+    },
+    {
+      "text": "l'attente de transcription.",
+      "timestamp": 54.27631759643555,
+      "source": "bypass"
+    },
+    {
+      "text": "Ça commande des nombres des dates 23, 47.",
+      "timestamp": 54.29083967208862,
+      "source": "bypass"
+    },
+    {
+      "text": "de 15 janvier 2024.",
+      "timestamp": 59.849613666534424,
+      "source": "bypass"
+    },
+    {
+      "text": "Sixièmement des mots difficiles.",
+      "timestamp": 59.863619565963745,
+      "source": "bypass"
+    },
+    {
+      "text": "Présentez-vous.",
+      "timestamp": 59.88004016876221,
+      "source": "bypass"
+    },
+    {
+      "text": "de l'élément prestidigitateur Kakemono Iaurt.",
+      "timestamp": 65.41986155509949,
+      "source": "bypass"
+    },
+    {
+      "text": "donc est complexe. L'optimisation des performances de transcription vocale nécessite une approche.",
+      "timestamp": 70.85433149337769,
+      "source": "bypass"
+    },
+    {
+      "text": "combinant la sélection appropriée des modèles,",
+      "timestamp": 76.49322557449341,
+      "source": "bypass"
+    },
+    {
+      "text": "l'ajustement des paramètres de traitement et l'implémentation d'aide.",
+      "timestamp": 76.50623035430908,
+      "source": "bypass"
+    },
+    {
+      "text": "post traitement pour améliorer la qualité du résultat final, fin du test de validation.",
+      "timestamp": 82.05952525138855,
+      "source": "bypass"
+    }
+  ]
+}

@@ -1,0 +1,97 @@
+{
+  "test_info": {
+    "timestamp": "2025-06-08T19:36:20.148598",
+    "duration": 76.97857737541199,
+    "device_id": 4,
+    "bypass_mode": false,
+    "engine": "SuperWhisper2 Engine V5 Phase 3",
+    "gpu": "RTX 3090 24GB"
+  },
+  "metrics": {
+    "similarity": 9.884238646482636,
+    "word_accuracy": 57.39644970414201,
+    "wer": 42.60355029585799,
+    "segments": 15,
+    "total_chars": 1058,
+    "callbacks": 0
+  },
+  "reference_text": "Bonjour, ceci est un test de validation pour SuperWhisper2. Je vais maintenant énoncer plusieurs phrases de complexité croissante pour évaluer la précision de transcription.\nPremièrement, des mots simples : chat, chien, maison, voiture, ordinateur, téléphone.\nDeuxièmement, des phrases courtes : Il fait beau aujourd'hui. Le café est délicieux. J'aime la musique classique.\nTroisièmement, des phrases plus complexes : L'intelligence artificielle transforme notre manière de travailler et de communiquer dans le monde moderne.\nQuatrièmement, des termes techniques : algorithme, machine learning, GPU RTX 3090, faster-whisper, quantification INT8, latence de transcription.\nCinquièmement, des nombres et dates : vingt-trois, quarante-sept, mille neuf cent quatre-vingt-quinze, le quinze janvier deux mille vingt-quatre.\nSixièmement, des mots difficiles : chrysanthème, anticonstitutionnellement, prestidigitateur, kakémono, yaourt.\nSeptièmement, une phrase longue et complexe : L'optimisation des performances de transcription vocale nécessite une approche méthodique combinant la sélection appropriée des modèles, l'ajustement des paramètres de traitement, et l'implémentation d'algorithmes de post-traitement pour améliorer la qualité du résultat final.\nFin du test de validation.",
+  "transcription": "Bonjour, ceci est un test de... Bonjour, ceci est un test de validation pour Super Whisper 2, je vais maintenant annoncer plusieurs... pour évaluer la précision de transcription. Premièrement des bons simples, cherche et un maison. ordinateur téléphone, deuxièmement des phrases courtes il fait beau aujourd'hui le café délicieux classique. Troisièmement des phrases plus complexes. La télévision artificielle transforme notre manière de traiter. dans le monde moderne. Quatrième, des termes techniques, algorithmes, machine learning, gpu. FASTER WISPER, quantification INT8, latur de transcription. et date 23-47-1995, le 15 janvier 2024-6 des mots difficiles, crise en thème, anti-quantitution de la banque, précédigitateur, kakemono, yawourt. une phrase longue et complexe, l'optimisation des performances de transcriptions vocales nécessite une approche. combinant la sélection appropriée des modèles, l'ajustement des paramètres de traitement et l'implémentation. de post-traitement pour améliorer la qualité du rétage final, fin du test de validation. ",
+  "segments": [
+    {
+      "text": "Bonjour, ceci est un test de...",
+      "timestamp": 16.14137053489685,
+      "source": "bypass"
+    },
+    {
+      "text": "Bonjour, ceci est un test de validation pour Super Whisper 2, je vais maintenant annoncer plusieurs...",
+      "timestamp": 21.67398715019226,
+      "source": "bypass"
+    },
+    {
+      "text": "pour évaluer la précision de transcription.",
+      "timestamp": 27.20426344871521,
+      "source": "bypass"
+    },
+    {
+      "text": "Premièrement des bons simples, cherche et un maison.",
+      "timestamp": 27.212263584136963,
+      "source": "bypass"
+    },
+    {
+      "text": "ordinateur téléphone, deuxièmement des phrases courtes il fait beau aujourd'hui le café délicieux",
+      "timestamp": 32.67050909996033,
+      "source": "bypass"
+    },
+    {
+      "text": "classique. Troisièmement des phrases plus complexes. La télévision artificielle",
+      "timestamp": 38.230576515197754,
+      "source": "bypass"
+    },
+    {
+      "text": "transforme notre manière de traiter.",
+      "timestamp": 38.24562954902649,
+      "source": "bypass"
+    },
+    {
+      "text": "dans le monde moderne. Quatrième, des termes techniques, algorithmes, machine learning, gpu.",
+      "timestamp": 43.78794741630554,
+      "source": "bypass"
+    },
+    {
+      "text": "FASTER WISPER, quantification INT8, latur de transcription.",
+      "timestamp": 49.242878675460815,
+      "source": "bypass"
+    },
+    {
+      "text": "et date 23-47-1995, le 15 janvier 2024-6",
+      "timestamp": 54.76391315460205,
+      "source": "bypass"
+    },
+    {
+      "text": "des mots difficiles, crise en thème, anti-quantitution de la banque, précédigitateur, kakemono, yawourt.",
+      "timestamp": 60.31661105155945,
+      "source": "bypass"
+    },
+    {
+      "text": "une phrase longue et complexe, l'optimisation des performances de transcriptions vocales nécessite une approche.",
+      "timestamp": 65.85263872146606,
+      "source": "bypass"
+    },
+    {
+      "text": "combinant la sélection appropriée des modèles,",
+      "timestamp": 71.4195773601532,
+      "source": "bypass"
+    },
+    {
+      "text": "l'ajustement des paramètres de traitement et l'implémentation.",
+      "timestamp": 71.43411898612976,
+      "source": "bypass"
+    },
+    {
+      "text": "de post-traitement pour améliorer la qualité du rétage final, fin du test de validation.",
+      "timestamp": 76.97857737541199,
+      "source": "bypass"
+    }
+  ]
+}

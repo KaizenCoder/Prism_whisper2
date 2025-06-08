@@ -1,0 +1,112 @@
+{
+  "test_info": {
+    "timestamp": "2025-06-09T00:48:38.977254",
+    "duration": 83.66049766540527,
+    "device_id": 4,
+    "bypass_mode": false,
+    "engine": "SuperWhisper2 Engine V5 Phase 3",
+    "gpu": "RTX 3090 24GB"
+  },
+  "metrics": {
+    "similarity": 0.35810205908683973,
+    "word_accuracy": 40.23668639053254,
+    "wer": 59.76331360946746,
+    "segments": 18,
+    "total_chars": 1041,
+    "callbacks": 0
+  },
+  "reference_text": "Bonjour, ceci est un test de validation pour SuperWhisper2. Je vais maintenant énoncer plusieurs phrases de complexité croissante pour évaluer la précision de transcription.\nPremièrement, des mots simples : chat, chien, maison, voiture, ordinateur, téléphone.\nDeuxièmement, des phrases courtes : Il fait beau aujourd'hui. Le café est délicieux. J'aime la musique classique.\nTroisièmement, des phrases plus complexes : L'intelligence artificielle transforme notre manière de travailler et de communiquer dans le monde moderne.\nQuatrièmement, des termes techniques : algorithme, machine learning, GPU RTX 3090, faster-whisper, quantification INT8, latence de transcription.\nCinquièmement, des nombres et dates : vingt-trois, quarante-sept, mille neuf cent quatre-vingt-quinze, le quinze janvier deux mille vingt-quatre.\nSixièmement, des mots difficiles : chrysanthème, anticonstitutionnellement, prestidigitateur, kakémono, yaourt.\nSeptièmement, une phrase longue et complexe : L'optimisation des performances de transcription vocale nécessite une approche méthodique combinant la sélection appropriée des modèles, l'ajustement des paramètres de traitement, et l'implémentation d'algorithmes de post-traitement pour améliorer la qualité du résultat final.\nFin du test de validation.",
+  "transcription": "toujours, ça c'était un test d'évalidation pour Super Whisper, j'avais maintenant énoncié plusieurs poils. complexité croissante pour évaluer la précision, la transcription, premièrement à démonstrer. chien, maison, voiture, dynataire, téléphone deuxièmement les phrases courtes du café des cieux et de la musique classique, troisièmement. des phrases plus complexes d'intelligence artificielle en forme de notre manière de travailler et de communiquer dans le monde moderne. C'est un traitement des termes techniques, algorithmes, machines, running, GPU, RTX 310. quantification, latheur de transcription, 5 amendes et nombre de dates et 23... Le cas a changé de 1924, il y a moins des mots dix-huit. Présentums, anti-constitutionnellement, prestigitateurs. Il y a aussi une phrase complexe et longue. des performances de transcription vocale c'est si tu n'as pas une méthodique convidant approprier les modèles, l'ajustement des paramètres de traitement et l'imprimantation. de post-traitement pour améliorer la qualité du résultat final. ",
+  "segments": [
+    {
+      "text": "toujours, ça c'était un test d'évalidation pour Super Whisper, j'avais maintenant énoncié plusieurs poils.",
+      "timestamp": 17.378421783447266,
+      "source": "bypass"
+    },
+    {
+      "text": "complexité croissante pour évaluer la précision, la transcription, premièrement à démonstrer.",
+      "timestamp": 22.92066240310669,
+      "source": "bypass"
+    },
+    {
+      "text": "chien, maison, voiture, dynataire, téléphone",
+      "timestamp": 28.482934713363647,
+      "source": "bypass"
+    },
+    {
+      "text": "deuxièmement les phrases courtes",
+      "timestamp": 28.492934942245483,
+      "source": "bypass"
+    },
+    {
+      "text": "du café des cieux et de la musique classique, troisièmement.",
+      "timestamp": 34.017906665802,
+      "source": "bypass"
+    },
+    {
+      "text": "des phrases plus complexes d'intelligence artificielle",
+      "timestamp": 39.58033323287964,
+      "source": "bypass"
+    },
+    {
+      "text": "en forme de notre manière de travailler et de communiquer",
+      "timestamp": 39.587342977523804,
+      "source": "bypass"
+    },
+    {
+      "text": "dans le monde moderne.",
+      "timestamp": 39.59634232521057,
+      "source": "bypass"
+    },
+    {
+      "text": "C'est un traitement des termes techniques, algorithmes, machines, running, GPU, RTX 310.",
+      "timestamp": 45.12789702415466,
+      "source": "bypass"
+    },
+    {
+      "text": "quantification, latheur de transcription, 5 amendes et nombre de dates et 23...",
+      "timestamp": 50.633493423461914,
+      "source": "bypass"
+    },
+    {
+      "text": "Le cas a changé de 1924, il y a moins des mots dix-huit.",
+      "timestamp": 56.09907364845276,
+      "source": "bypass"
+    },
+    {
+      "text": "Présentums, anti-constitutionnellement, prestigitateurs.",
+      "timestamp": 61.569382190704346,
+      "source": "bypass"
+    },
+    {
+      "text": "Il y a aussi une phrase complexe et longue.",
+      "timestamp": 67.04877853393555,
+      "source": "bypass"
+    },
+    {
+      "text": "des performances de transcription vocale",
+      "timestamp": 72.55679988861084,
+      "source": "bypass"
+    },
+    {
+      "text": "c'est si tu n'as pas une méthodique",
+      "timestamp": 72.56180500984192,
+      "source": "bypass"
+    },
+    {
+      "text": "convidant",
+      "timestamp": 72.56831359863281,
+      "source": "bypass"
+    },
+    {
+      "text": "approprier les modèles, l'ajustement des paramètres de traitement et l'imprimantation.",
+      "timestamp": 78.12452220916748,
+      "source": "bypass"
+    },
+    {
+      "text": "de post-traitement pour améliorer la qualité du résultat final.",
+      "timestamp": 83.66049766540527,
+      "source": "bypass"
+    }
+  ]
+}

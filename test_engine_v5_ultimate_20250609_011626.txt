@@ -1,0 +1,58 @@
+TEST ENGINE V5 ULTIMATE - RESULTS
+============================================================
+
+Date: 2025-06-09 01:16:26
+Device: Rode ID 4
+Bypass Mode: No
+
+METRICS
+------------------------------
+Similarity: 53.6%
+Word Accuracy: 69.8%
+WER: 30.2%
+Duration: 76.7s
+Segments: 25
+
+REFERENCE TEXT
+------------------------------
+Bonjour, ceci est un test de validation pour SuperWhisper2. Je vais maintenant énoncer plusieurs phrases de complexité croissante pour évaluer la précision de transcription.
+Premièrement, des mots simples : chat, chien, maison, voiture, ordinateur, téléphone.
+Deuxièmement, des phrases courtes : Il fait beau aujourd'hui. Le café est délicieux. J'aime la musique classique.
+Troisièmement, des phrases plus complexes : L'intelligence artificielle transforme notre manière de travailler et de communiquer dans le monde moderne.
+Quatrièmement, des termes techniques : algorithme, machine learning, GPU RTX 3090, faster-whisper, quantification INT8, latence de transcription.
+Cinquièmement, des nombres et dates : vingt-trois, quarante-sept, mille neuf cent quatre-vingt-quinze, le quinze janvier deux mille vingt-quatre.
+Sixièmement, des mots difficiles : chrysanthème, anticonstitutionnellement, prestidigitateur, kakémono, yaourt.
+Septièmement, une phrase longue et complexe : L'optimisation des performances de transcription vocale nécessite une approche méthodique combinant la sélection appropriée des modèles, l'ajustement des paramètres de traitement, et l'implémentation d'algorithmes de post-traitement pour améliorer la qualité du résultat final.
+Fin du test de validation.
+
+TRANSCRIPTION
+------------------------------
+Bonjour, ceci est un test de vidéo. Pour Super Whisper 2, je vais maintenant énoncer plusieurs... une phase de complexité croissante pour évaluer la... précision de transcription, premièrement des mots 5. chat, chien, maison, voiture, ordinateur, téléphone... Deuxièmement, des phrases courtes. Il fait beau aujourd'hui. Le café est délicieux et j'aime la musique classique. des phrases plus complexes, l'intelligence artificielle. transforme notre manière de travailler et de communiquer dans le monde moderne. Quatrièmement, des termes techniques algorithmes. Machine Learning, GPU RTX 3090. FasterWhisper quantification INT8 La torse de transcription, cinquièmement des nombres et dates. 23-47-1995 le 15 janvier 2024. Sixièmement démo difficile, je le fais en thème. anticonstitutionnellement, prestidigitateurs et… Kakemono, yaourt, c'est-à-dire une phrase longue. complexe, l'optimisation des performances. notre inscription vocale nécessitée. une approche méthodique combinant la sélection appropriée. Il y a des modèles, justement, des paramètres de frais. et l'implémentation d'algorithmes de poste. traitement pour améliorer la qualité du résultat final. Fin du test de validation. 
+
+SEGMENTS
+------------------------------
+[1] 4.7s: Bonjour, ceci est un test de vidéo.
+[2] 7.9s: Pour Super Whisper 2, je vais maintenant énoncer plusieurs...
+[3] 10.8s: une phase de complexité croissante pour évaluer la...
+[4] 13.9s: précision de transcription, premièrement des mots 5.
+[5] 16.8s: chat, chien, maison, voiture, ordinateur, téléphone...
+[6] 20.0s: Deuxièmement, des phrases courtes. Il fait beau aujourd'hui.
+[7] 22.8s: Le café est délicieux et j'aime la musique classique.
+[8] 25.9s: des phrases plus complexes, l'intelligence artificielle.
+[9] 28.9s: transforme notre manière de travailler et de communiquer dans le monde moderne.
+[10] 31.9s: Quatrièmement, des termes techniques algorithmes.
+[11] 34.8s: Machine Learning, GPU RTX 3090.
+[12] 37.8s: FasterWhisper quantification INT8
+[13] 40.9s: La torse de transcription, cinquièmement des nombres et dates.
+[14] 43.8s: 23-47-1995
+[15] 46.8s: le 15 janvier 2024.
+[16] 49.9s: Sixièmement démo difficile, je le fais en thème.
+[17] 52.8s: anticonstitutionnellement, prestidigitateurs et…
+[18] 55.9s: Kakemono, yaourt, c'est-à-dire une phrase longue.
+[19] 58.8s: complexe, l'optimisation des performances.
+[20] 61.8s: notre inscription vocale nécessitée.
+[21] 64.8s: une approche méthodique combinant la sélection appropriée.
+[22] 67.9s: Il y a des modèles, justement, des paramètres de frais.
+[23] 70.9s: et l'implémentation d'algorithmes de poste.
+[24] 73.9s: traitement pour améliorer la qualité du résultat final.
+[25] 76.7s: Fin du test de validation.

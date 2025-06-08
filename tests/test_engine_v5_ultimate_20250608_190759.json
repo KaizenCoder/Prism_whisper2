@@ -1,0 +1,38 @@
+{
+  "test_info": {
+    "timestamp": "2025-06-08T19:07:59.014928",
+    "duration": 43.43539619445801,
+    "device_id": 4,
+    "bypass_mode": false,
+    "engine": "SuperWhisper2 Engine V5 Phase 3",
+    "gpu": "RTX 3090 24GB"
+  },
+  "metrics": {
+    "similarity": 7.472527472527473,
+    "word_accuracy": 5.917159763313606,
+    "wer": 94.0828402366864,
+    "segments": 4,
+    "total_chars": 146,
+    "callbacks": 0
+  },
+  "reference_text": "Bonjour, ceci est un test de validation pour SuperWhisper2. Je vais maintenant énoncer plusieurs phrases de complexité croissante pour évaluer la précision de transcription.\nPremièrement, des mots simples : chat, chien, maison, voiture, ordinateur, téléphone.\nDeuxièmement, des phrases courtes : Il fait beau aujourd'hui. Le café est délicieux. J'aime la musique classique.\nTroisièmement, des phrases plus complexes : L'intelligence artificielle transforme notre manière de travailler et de communiquer dans le monde moderne.\nQuatrièmement, des termes techniques : algorithme, machine learning, GPU RTX 3090, faster-whisper, quantification INT8, latence de transcription.\nCinquièmement, des nombres et dates : vingt-trois, quarante-sept, mille neuf cent quatre-vingt-quinze, le quinze janvier deux mille vingt-quatre.\nSixièmement, des mots difficiles : chrysanthème, anticonstitutionnellement, prestidigitateur, kakémono, yaourt.\nSeptièmement, une phrase longue et complexe : L'optimisation des performances de transcription vocale nécessite une approche méthodique combinant la sélection appropriée des modèles, l'ajustement des paramètres de traitement, et l'implémentation d'algorithmes de post-traitement pour améliorer la qualité du résultat final.\nFin du test de validation.",
+  "transcription": "Bonjour, ceci est un tête de rédation pour Super Whisper. je vais m'attendre. Super. Bonjour, c'est C, t'intéresse de validation pour super-ouis. ",
+  "segments": [
+    {
+      "text": "Bonjour, ceci est un tête de rédation pour Super Whisper.",
+      "timestamp": 24.34736466407776
+    },
+    {
+      "text": "je vais m'attendre.",
+      "timestamp": 27.549662113189697
+    },
+    {
+      "text": "Super.",
+      "timestamp": 30.710532426834106
+    },
+    {
+      "text": "Bonjour, c'est C, t'intéresse de validation pour super-ouis.",
+      "timestamp": 43.43539619445801
+    }
+  ]
+}

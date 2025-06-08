@@ -9,6 +9,7 @@ description = "SuperWhisper Windows Native - Transcription vocale instantanée a
 authors = ["SuperWhisper2 Team"]
 license = "MIT"
 readme = "README.md"
+package-mode = false
 homepage = "https://github.com/user/SuperWhisper2"
 repository = "https://github.com/user/SuperWhisper2"
 documentation = "https://superwhisper2.readthedocs.io"
@@ -29,7 +30,7 @@ classifiers = [
 python = "^3.11"
 
 # Core AI dependencies
-faster-whisper = "^0.10.0"
+faster-whisper = "^1.0.1"
 torch = {version = "^2.0.0", source = "pytorch"}
 torchaudio = {version = "^2.0.0", source = "pytorch"}
 
@@ -43,6 +44,8 @@ sounddevice = "^0.4.6"
 numpy = "^1.24.0"
 librosa = "^0.10.0"
 webrtcvad = "^2.0.10"
+scipy = "^1.11.0"
+nvidia-ml-py = "^12.535.133"
 
 # System integration
 pystray = "^0.19.4"
@@ -88,7 +91,7 @@ pytest = "^7.4.3"
 pytest-asyncio = "^0.21.1"
 pytest-cov = "^4.1.0"
 black = "^23.11.0"
-flake8 "^6.1.0"
+flake8 = "^6.1.0"
 mypy = "^1.7.1"
 isort = "^5.12.0"
 pre-commit = "^3.5.0"
@@ -187,9 +190,9 @@ exclude_lines = [
     "raise AssertionError",
     "raise NotImplementedError",
     "if 0:",
-    "if __name__ == .__main__.:",
-    "class .*\bProtocol\):",
-    "@(abc\.)?abstractmethod",
+    'if __name__ == "__main__":',
+    "class .*\\bProtocol\\):",
+    "@(abc\\.)?abstractmethod",
 ]
 
 # === Project Configuration ===

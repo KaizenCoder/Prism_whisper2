@@ -1,0 +1,48 @@
+TEST ENGINE V5 ULTIMATE - RESULTS
+============================================================
+
+Date: 2025-06-08 19:36:20
+Device: Rode ID 4
+Bypass Mode: No
+
+METRICS
+------------------------------
+Similarity: 9.9%
+Word Accuracy: 57.4%
+WER: 42.6%
+Duration: 77.0s
+Segments: 15
+
+REFERENCE TEXT
+------------------------------
+Bonjour, ceci est un test de validation pour SuperWhisper2. Je vais maintenant énoncer plusieurs phrases de complexité croissante pour évaluer la précision de transcription.
+Premièrement, des mots simples : chat, chien, maison, voiture, ordinateur, téléphone.
+Deuxièmement, des phrases courtes : Il fait beau aujourd'hui. Le café est délicieux. J'aime la musique classique.
+Troisièmement, des phrases plus complexes : L'intelligence artificielle transforme notre manière de travailler et de communiquer dans le monde moderne.
+Quatrièmement, des termes techniques : algorithme, machine learning, GPU RTX 3090, faster-whisper, quantification INT8, latence de transcription.
+Cinquièmement, des nombres et dates : vingt-trois, quarante-sept, mille neuf cent quatre-vingt-quinze, le quinze janvier deux mille vingt-quatre.
+Sixièmement, des mots difficiles : chrysanthème, anticonstitutionnellement, prestidigitateur, kakémono, yaourt.
+Septièmement, une phrase longue et complexe : L'optimisation des performances de transcription vocale nécessite une approche méthodique combinant la sélection appropriée des modèles, l'ajustement des paramètres de traitement, et l'implémentation d'algorithmes de post-traitement pour améliorer la qualité du résultat final.
+Fin du test de validation.
+
+TRANSCRIPTION
+------------------------------
+Bonjour, ceci est un test de... Bonjour, ceci est un test de validation pour Super Whisper 2, je vais maintenant annoncer plusieurs... pour évaluer la précision de transcription. Premièrement des bons simples, cherche et un maison. ordinateur téléphone, deuxièmement des phrases courtes il fait beau aujourd'hui le café délicieux classique. Troisièmement des phrases plus complexes. La télévision artificielle transforme notre manière de traiter. dans le monde moderne. Quatrième, des termes techniques, algorithmes, machine learning, gpu. FASTER WISPER, quantification INT8, latur de transcription. et date 23-47-1995, le 15 janvier 2024-6 des mots difficiles, crise en thème, anti-quantitution de la banque, précédigitateur, kakemono, yawourt. une phrase longue et complexe, l'optimisation des performances de transcriptions vocales nécessite une approche. combinant la sélection appropriée des modèles, l'ajustement des paramètres de traitement et l'implémentation. de post-traitement pour améliorer la qualité du rétage final, fin du test de validation. 
+
+SEGMENTS
+------------------------------
+[1] 16.1s: Bonjour, ceci est un test de...
+[2] 21.7s: Bonjour, ceci est un test de validation pour Super Whisper 2, je vais maintenant annoncer plusieurs...
+[3] 27.2s: pour évaluer la précision de transcription.
+[4] 27.2s: Premièrement des bons simples, cherche et un maison.
+[5] 32.7s: ordinateur téléphone, deuxièmement des phrases courtes il fait beau aujourd'hui le café délicieux
+[6] 38.2s: classique. Troisièmement des phrases plus complexes. La télévision artificielle
+[7] 38.2s: transforme notre manière de traiter.
+[8] 43.8s: dans le monde moderne. Quatrième, des termes techniques, algorithmes, machine learning, gpu.
+[9] 49.2s: FASTER WISPER, quantification INT8, latur de transcription.
+[10] 54.8s: et date 23-47-1995, le 15 janvier 2024-6
+[11] 60.3s: des mots difficiles, crise en thème, anti-quantitution de la banque, précédigitateur, kakemono, yawourt.
+[12] 65.9s: une phrase longue et complexe, l'optimisation des performances de transcriptions vocales nécessite une approche.
+[13] 71.4s: combinant la sélection appropriée des modèles,
+[14] 71.4s: l'ajustement des paramètres de traitement et l'implémentation.
+[15] 77.0s: de post-traitement pour améliorer la qualité du rétage final, fin du test de validation.

@@ -1,0 +1,11 @@
+{
+  "timestamp": "",
+  "cuda_available": false,
+  "pytorch_cuda": true,
+  "faster_whisper": true,
+  "cublas_libraries": false,
+  "recommendations": [
+    "Installer CUDA Toolkit 12.x",
+    "V\u00e9rifier installation cuBLAS"
+  ]
+}
